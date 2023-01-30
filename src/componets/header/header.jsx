@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./header.css";
 
 const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div>
-      <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+      <div class={`container-fluid fixed-top ${scrolled?'scrolled':''} px-0 wow fadeIn`}data-wow-delay="0.1s">
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
           <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
             <h1 class="fw-bold text-success m-0">Bite <span class="text-secondary">Bazaar</span></h1>
