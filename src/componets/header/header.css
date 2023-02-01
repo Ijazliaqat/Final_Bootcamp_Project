@@ -5,6 +5,8 @@
     left: 0;
     right: 0;
     transition: background-color 0.5s ease-in-out;
+    
+    /* border: 1px solid #F65005; */
 }
 
 .fixed-top.scrolled {
@@ -19,7 +21,7 @@
 .navbar .dropdown-toggle::after {
     border: none;
     content: "\f107";
-    font-family: "Font Awesome 5 Free";
+    /* font-family: "Font Awesome 5 Free"; */
     font-weight: 900;
     vertical-align: middle;
     margin-left: 8px;

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "./header.css";
+import { Link, Outlet } from "react-router-dom";
+import HeroSection from "../hero-section/hero-section";
+import { Grid } from "@mui/material";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -20,20 +24,20 @@ const Header = () => {
   }, []);
 
   return (
-    <div>
-      <div class={`container-fluid fixed-top ${scrolled?'scrolled':''} px-0 wow fadeIn`}data-wow-delay="0.1s">
+    <Grid sx={{ marginTop: '80px' }}>
+      <div class={`container-fluid fixed-top ${scrolled ? 'scrolled' : ''} px-0 wow fadeIn`} data-wow-delay="0.1s">
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-          <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+          <Link to='/'  class="navbar-brand ms-4 ms-lg-0">
             <h1 class="fw-bold text-success m-0">Bite <span class="text-secondary">Bazaar</span></h1>
-          </a>
+          </Link>
           <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-              <a href="index.html" class="nav-item nav-link active">Home</a>
-              <a href="about.html" class="nav-item nav-link">About Us</a>
-              <a href="product.html" class="nav-item nav-link">Products</a>
+              <Link to='/' class="nav-item nav-link active">Home</Link>
+              <Link to='history' class="nav-item nav-link">History</Link>
+              <Link class="nav-item nav-link" to='products' >Products</Link>
               <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">
@@ -44,6 +48,7 @@ const Header = () => {
                 </div>
               </div>
               <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+              <a href="contact.html" class="nav-item nav-link"><AccountCircleIcon /></a>
             </div>
             <div class="d-none d-lg-flex ms-2">
               <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -59,7 +64,7 @@ const Header = () => {
           </div>
         </nav>
       </div>
-    </div>
+    </Grid>
   );
 };
 
