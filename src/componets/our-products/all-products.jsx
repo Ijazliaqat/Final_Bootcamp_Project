@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { products } from '../../mock-data/products-data';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import './all-products.css'
+import axios from 'axios';
 
 const AllProducts = () => {
+
+  const [products, setProducts] = useState();
+
+  console.log(products);
+
+  useEffect(()=>{
+    axios.get('http://localhost:9000/all-products')
+    .then(response=>{setProducts(response.data);})
+  },[])
   return (
     <div>
       <div class="container-xxl py-5">
@@ -38,11 +48,11 @@ const AllProducts = () => {
             <div id="tab-1" class="tab-pane fade show p-0 active">
               <div class="row g-4" >
                 <div class="  d-flex flex-wrap  fadeInUp" data-wow-delay="0.1s">
-                  {products.map((item) => {
+                  {products?.map((item) => {
                     return (
                       <div class="product-item col-xl-3 col-lg-3 col-md-3 mt-3 px-1 justify-content-between">
                         <div class="position-relative bg-light overflow-hidden">
-                          <img class="img-fluid w-100" src={item.img} alt="" />
+                          <img class="img-fluid w-100" src={item.image} alt="" />
                           <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
                         </div>
                         <div class="text-center p-4">

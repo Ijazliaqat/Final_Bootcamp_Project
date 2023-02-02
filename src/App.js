@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import AddProducts from './add-products/add-products';
 import './App.css';
+import CreateProduct from './componets/add-products/add-products';
+import AddProducts from './componets/add-products/add-products';
 import Dashboard from './componets/Dashboard/dashboard';
 import Footer from './componets/footer/footer';
 import Header from './componets/header/header';
@@ -19,7 +20,7 @@ function App() {
         <Route path='products' element={<AllProducts />} />
         <Route path='history' element={<History />} />
         <Route path='products/:productId' element={<SingleProducts />} />
-        <Route path='add-products' element={<AddProducts />} />
+        <Route path='create-products' element={<CreateProduct />} />
       </Routes>
       {/* <Users /> */}
       <Footer />
