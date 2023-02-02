@@ -4,11 +4,13 @@ import { Outlet } from 'react-router-dom'
 import Header from '../header/header'
 import HeroSection from '../hero-section/hero-section'
 import OurFeatures from '../our-features/our-features'
+import AllProducts from '../our-products/all-products'
 
 const Dashboard = () => {
   return (
     <Grid  >
       <HeroSection />
+      <AllProducts />
       <OurFeatures/>
       <Outlet />
     </Grid>

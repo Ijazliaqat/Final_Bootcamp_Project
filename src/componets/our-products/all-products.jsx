@@ -1,5 +1,7 @@
 import React from 'react'
-import { products } from '../../mock-data/products-data'
+import { products } from '../../mock-data/products-data';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import './all-products.css'
 
 const AllProducts = () => {
@@ -50,10 +52,10 @@ const AllProducts = () => {
                         </div>
                         <div class="d-flex border-top">
                           <small class="w-50 text-center border-end py-2">
-                            <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                            <a class="text-body" href=""><i class=" me-2"><VisibilityIcon/></i>View detail</a>
                           </small>
                           <small class="w-50 text-center py-2">
-                            <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                            <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"><AddShoppingCartIcon/></i>Add to cart</a>
                           </small>
                         </div>
                       </div>
