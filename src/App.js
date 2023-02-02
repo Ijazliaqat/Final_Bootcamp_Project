@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
+import AddCart from './componets/add-cart/add-cart';
 import CreateProduct from './componets/add-products/add-products';
 import AddProducts from './componets/add-products/add-products';
 import Dashboard from './componets/Dashboard/dashboard';
@@ -10,11 +10,13 @@ import History from './componets/history/history';
 import AllProducts from './componets/our-products/all-products';
 import SingleProducts from './componets/single-products/single-products';
 import Users from './componets/users/users';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <AddCart />
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='products' element={<AllProducts />} />
