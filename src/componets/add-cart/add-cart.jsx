@@ -36,7 +36,6 @@ const AddCart = () => {
             // onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <h1>sss</h1>
             <div className='cart-header'>
                 <h4><ShoppingBagIcon sx={{ width: '50px', height: '30px', color: 'green' }} /> Shopping Cart</h4>
             </div>
