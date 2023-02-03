@@ -13,6 +13,7 @@ import Users from './componets/users/users';
 import './App.css';
 import SignIn from './componets/authentication/sign-in/sign-in';
 import SignUp from './componets/authentication/sign-up/sign-up';
+import Wishlists from './componets/wishlists/wishlists';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='create-products' element={<CreateProduct />} />
         <Route path='signin' element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
+        <Route path='wishlists' element={<Wishlists />} />
       </Routes>
       {/* <Users /> */}
       <Footer />

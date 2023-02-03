@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import "./header.css";
-import { Link, Outlet } from "react-router-dom";
-import HeroSection from "../hero-section/hero-section";
+import { Link } from "react-router-dom";
 import { Grid } from "@mui/material";
+import "./header.css";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -41,13 +40,11 @@ const Header = () => {
               <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">
-                  <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                  <a href="feature.html" class="dropdown-item">Our Features</a>
                   <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                   <a href="404.html" class="dropdown-item">404 Page</a>
                 </div>
               </div>
-              <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+              <Link to='wishlists' class="nav-item nav-link">Wish List</Link>
               <a href="contact.html" class="nav-item nav-link"><AccountCircleIcon /></a>
             </div>
             <div class="d-none d-lg-flex ms-2">
