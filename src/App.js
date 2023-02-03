@@ -11,6 +11,7 @@ import AllProducts from './componets/our-products/all-products';
 import SingleProducts from './componets/single-products/single-products';
 import Users from './componets/users/users';
 import './App.css';
+import SignIn from './componets/authentication/sign-in/sign-in';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='history' element={<History />} />
         <Route path='products/:productId' element={<SingleProducts />} />
         <Route path='create-products' element={<CreateProduct />} />
+        <Route path='signin' element={<SignIn />} />
       </Routes>
       {/* <Users /> */}
       <Footer />
