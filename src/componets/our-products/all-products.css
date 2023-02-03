@@ -22,3 +22,8 @@
 .product-item small a:hover {
     color: #3CB815 !important;
 }
+
+.filter-items input{
+    border: none;
+    outline-width: 0;
+}
