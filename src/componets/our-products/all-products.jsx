@@ -9,7 +9,7 @@ import { Rating } from "@mui/material";
 
 const AllProducts = () => {
   const [products, setProducts] = useState();
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(2.5);
 
   console.log(products);
 
@@ -83,7 +83,7 @@ const AllProducts = () => {
                 <div class="  d-flex flex-wrap fadeInUp" data-wow-delay="0.1s">
                   {products?.map((item) => {
                     return (
-                      <div class="product-item  shadow col-xl-3 col-lg-3 col-md-3 mt-3 justify-content-between">
+                      <div key={item._id} class="product-item  shadow col-xl-3 col-lg-3 col-md-3 mt-3 justify-content-between">
                         <div class="position-relative bg-light overflow-hidden">
                           <img
                             class="img-fluid w-100"
@@ -121,9 +121,9 @@ const AllProducts = () => {
                             </a>
                           </small>
                           <small class="w-50 text-center py-2">
-                            <a class="text-body" href="">
+                            <a class="text-body">
                               <i class="me-2">
-                                <FavoriteIcon />
+                                <FavoriteIcon onClick={()=>{console.log(item)}} />
                               </i>
                             </a>
                           </small>
