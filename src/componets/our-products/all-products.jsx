@@ -48,7 +48,7 @@ const AllProducts = () => {
             <div id="tab-1" class="tab-pane fade show p-0 active">
               <div class="row g-4" >
                 <div class="  d-flex flex-wrap  fadeInUp" data-wow-delay="0.1s">
-                  {products?.map((item) => {
+                  {productsData?.map((item) => {
                     return (
                       <div class="product-item col-xl-3 col-lg-3 col-md-3 mt-3 px-1 justify-content-between">
                         <div class="position-relative bg-light overflow-hidden">
