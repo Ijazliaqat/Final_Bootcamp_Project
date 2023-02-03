@@ -1,0 +1,137 @@
+/* .container {
+    background-color: aqua;
+} */
+
+.containerGF {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.container-1 {
+   
+    /* width: 150px;
+    margin-right: 80px;
+    margin-left: 80px;
+    cursor: pointer;
+    border: 1px solid rgb(240, 50, 81);
+    border-radius: 16px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle; */
+}
+
+.container-1 h5 {
+    margin-left: 20px;
+}
+
+.container-2 {
+    display: flex;
+    width: 150px;
+    margin-right: 60px;
+    margin-left: 0px;
+    cursor: pointer;
+    border: 1px solid rgb(39, 20, 184);
+    border-radius: 16px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.container-2 h5 {
+    margin-left: 20px;
+}
+
+.container-3 {
+    display: flex;
+    width: 150px;
+    margin-right: 60px;
+    margin-left: 0px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 16px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.container-3 h5 {
+    margin-left: 20px;
+}
+
+.container-4 hr {
+    margin-top: 20px;
+    width: 48%;
+}
+.or{
+    justify-content: center;
+        display: flex;
+        width: 30px;
+        margin: -30px auto 10px;
+        background: #fff;
+}
+
+.form {
+    width: 250px;
+    height: 380px;
+    background: linear-gradient(top, rgba(210, 14, 14, 0.8)50%, rgba(226, 22, 22, 0.8)50%);
+    position: absolute;
+    border-radius: 10px;
+    padding: 25px;
+    left: 500px;
+}
+
+.form h2 {
+    width: 220px;
+    font-family: sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 42px;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+}
+
+.form input {
+    width: 100%;
+    height: 35px;
+    background: transparent;
+    position: relative;
+    display: inline;
+    font-size: 15px;
+    box-sizing: border-box;
+    border-bottom: 50px;
+    border-top: 50px;
+    border-left: 50px;
+    border-right: 50px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    margin-top: 30px;
+}
+
+::placeholder {
+    font-family: Arial;
+}
+
+.btnn {
+    width: 240px;
+    height: 40px;
+    background: aqua;
+    border: 1px;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.btnn:hover {
+    color: black;
+    background: green;
+}
+
+.form a {
+    position: center;
+}
