@@ -1,9 +1,10 @@
+import { Rating } from "@mui/material";
 import React from "react";
 import productImage from "../single-products/images/image.png";
 
 const SingleProducts = () => {
 
-  // const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(2);
   return (
     <>
 
@@ -23,13 +24,13 @@ const SingleProducts = () => {
 
         {/* Code below for stars Rating:  */}
 
-      <div className="rating float-end w-80 ms-2 rounded my-3 me-3">
-      {/* <Rating
+      <div className="rating float-end w-80 ms-2 rounded my-4 me-3">
+      <Rating
           name="simple-controlled"
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
-                }}  /> */}
+                }}  />
           <p>200 Ratings | 22 Answered Questions</p>
           <h6>Brand: <small>By Ideas Pakistan</small></h6>
           <h4>$ 14</h4>
@@ -44,7 +45,7 @@ const SingleProducts = () => {
               />
               <button type="button" class="btn btn-outline-success mx-2">-</button>
           </div>
-          <button type="button" class="btn my-1 w-50 btn-success mx-2">Add To Cart</button>
+          <button type="button" class="btn mt-5 w-50 btn-success mx-2">Add To Cart</button>
           <button type="button" class="btn my-1 w-50 btn-success mx-2">Buy Now</button>
       </div>
 
