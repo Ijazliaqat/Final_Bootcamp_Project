@@ -10,7 +10,7 @@
 }
 
 .container-1 {
-   
+
     /* width: 150px;
     margin-right: 80px;
     margin-left: 80px;
@@ -63,18 +63,58 @@
     margin-left: 20px;
 }
 
-.container-4 hr {
-    margin-top: 20px;
-    width: 48%;
-}
-.or{
+/* .container-4 {
+    justify-content: left;
+    align-content: center;
+    padding: 16px;
     justify-content: center;
-        display: flex;
-        width: 30px;
-        margin: -30px auto 10px;
-        background: #fff;
+    align-items: center;
+    vertical-align: middle;
 }
 
+.or {
+    font-size: 15px;
+    color: black;
+    font-weight: 600;
+    justify-content: center;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+} */
+
+/* .or::before {
+    content: '';
+    background: #efefef;
+    display: block;
+    height: 2px;
+    width: 150px;
+    position:relative;
+    top: 11px;
+}
+
+.or::after {
+    content: '';
+    background: #efefef;
+    display: block;
+    height: 2px;
+    width: 150px;
+    position: relative;
+    bottom: 10px;
+    left: 160px;
+} */
+
+.p {
+    justify-content: center;
+}
+
+/* .container-5{
+    justify-content: right;
+}
+.container-5 hr{
+    margin-top: 20px;
+    width: 48%;
+} */
 .form {
     width: 250px;
     height: 380px;
