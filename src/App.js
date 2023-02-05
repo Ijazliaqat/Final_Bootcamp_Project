@@ -14,6 +14,8 @@ import './App.css';
 import SignIn from './componets/authentication/sign-in/sign-in';
 import SignUp from './componets/authentication/sign-up/sign-up';
 import Wishlists from './componets/wishlists/wishlists';
+import Forgot from './componets/authentication/forget-password/forgetpassword';
+import Forget from './componets/authentication/forget-password/forgetpassword';
 
 
 
@@ -31,6 +33,7 @@ function App() {
         <Route path='signin' element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='wishlists' element={<Wishlists />} />
+        <Route path='forgetpassword' element={<Forget/>} />
       </Routes>
       {/* <Users /> */}
       <Footer />
