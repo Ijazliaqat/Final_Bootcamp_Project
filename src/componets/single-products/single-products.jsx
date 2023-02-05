@@ -31,6 +31,7 @@ const SingleProducts = () => {
           onChange={(event, newValue) => {
             setValue(newValue);
                 }}  />
+                
           <p>200 Ratings | 22 Answered Questions</p>
           <h6>Brand: <small>By Ideas Pakistan</small></h6>
           <h4>$ 14</h4>
