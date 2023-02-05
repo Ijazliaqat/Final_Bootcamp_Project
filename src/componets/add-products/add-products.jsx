@@ -1,70 +1,5 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-
-// const CreateProduct = () => {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     price: 0,
-//     image: null
-//   });
-
-//   const onChange = e =>
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-//   const onFileChange = e =>
-//     setFormData({ ...formData, image: e.target.files[0] });
-
-//   const onSubmit = async e => {
-//     e.preventDefault();
-
-//     const formData = new FormData();
-//     formData.append("name", name);
-//     formData.append("price", price);
-//     formData.append("image", image);
-
-//     try {
-//       const res = await axios.post("/addproducts", formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data"
-//         }
-//       });
-
-//       console.log(res.data);
-//     } catch (err) {
-//       console.error(err.response.data);
-//     }
-//   };
-
-//   const { name, price, image } = formData;
-
-//   return (
-//     <form onSubmit={onSubmit}>
-//       <input
-//         type="text"
-//         name="name"
-//         value={name}
-//         onChange={onChange}
-//         placeholder="Name"
-//       />
-//       <input
-//         type="number"
-//         name="price"
-//         value={price}
-//         onChange={onChange}
-//         placeholder="Price"
-//       />
-//       <input type="file" name="image" onChange={onFileChange} />
-//       <button type="submit">Submit</button>
-//     </form>
-//   );
-// };
-
-// export default CreateProduct;
-
-
-
 import React, { useState } from 'react';
-import axios from "axios";
+import axios from '../../axios/axios'
 
 const CreateProduct = () => {
     const [name, setName] = useState('');
@@ -95,7 +30,7 @@ const CreateProduct = () => {
         }
         console.log(dataObj);
         try {
-            const response = await axios.post("http://localhost:9000/add-product", dataObj);
+            const response = await axios.post("/add-product", dataObj);
             console.log(response.data);
             return response.data
         } catch (error) {

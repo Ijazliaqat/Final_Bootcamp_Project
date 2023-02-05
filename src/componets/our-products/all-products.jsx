@@ -4,20 +4,40 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./all-products.css";
-import axios from "axios";
+import axios from "../../axios/axios";
 import { Rating } from "@mui/material";
 
 const AllProducts = () => {
   const [products, setProducts] = useState();
-  const [value, setValue] = useState(2.5);
+  const [wishList, setWishList] = useState([]);
+  const [newWishList, setNewWishList] = useState();
+  const [value, setValue] = useState(2);
 
   console.log(products);
 
   useEffect(() => {
-    axios.get("http://localhost:9000/all-products").then((response) => {
+    axios.get("/all-products").then((response) => {
       setProducts(response.data);
     });
   }, []);
+
+  const addWishListHandler = async (item) => {
+    const wishListObj = {
+      name: item.name,
+      price: item.newPrice,
+      image: item.image
+    }
+    setWishList((prevData) => [...prevData, wishListObj]);
+
+    const response = axios.post("/wish-list", wishList);
+    return response.data;
+  };
+
+  // useEffect(() => {
+  //   const response = axios.post("http://localhost:9000/add-product", wishList);
+  //   return response.data;
+  // }, []);
+  console.log(wishList);
   return (
     <div>
       <div class="container-xxl py-5">
@@ -36,17 +56,16 @@ const AllProducts = () => {
                 </p>
               </div>
             </div>
-          
+
             <div
               class="d-flex bg-success  rounded-2 flex-wrap py-3 justify-content-between text-start  slideInRight"
               data-wow-delay="0.1s"
             >
-              
               <div className="filter-items">
                 <h5 className="text-white ">Price</h5>
                 <input type="text" />
               </div>
-              <div className="filter-item" >
+              <div className="filter-item">
                 <h5 className="text-white ">Availability</h5>
                 <input type="text" />
               </div>
@@ -60,20 +79,6 @@ const AllProducts = () => {
                   }}
                 />
               </div>
-              {/* <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
-                <li class="nav-item me-2">
-                  <a class="btn btn-outline-primary border-2 active" data-bs-toggle="pill" href="#tab-1">All</a>
-                </li>
-                <li class="nav-item me-2">
-                  <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-1">Vegetable</a>
-                </li>
-                <li class="nav-item me-2">
-                  <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-2">Fruits </a>
-                </li>
-                <li class="nav-item me-0">
-                  <a class="btn btn-outline-primary border-2" data-bs-toggle="pill" href="#tab-3">Fresh</a>
-                </li>
-              </ul> */}
             </div>
           </div>
 
@@ -83,12 +88,15 @@ const AllProducts = () => {
                 <div class="  d-flex flex-wrap fadeInUp" data-wow-delay="0.1s">
                   {products?.map((item) => {
                     return (
-                      <div key={item._id} class="product-item  shadow col-xl-3 col-lg-3 col-md-3 mt-3 justify-content-between">
+                      <div
+                        key={item._id}
+                        class="product-item  shadow col-xl-3 col-lg-3 col-md-3 mt-3 justify-content-between"
+                      >
                         <div class="position-relative bg-light overflow-hidden">
                           <img
                             class="img-fluid w-100"
                             src={item.image}
-                            alt=""
+                            alt="image"
                           />
                           <div class="bg-success rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                             New
@@ -123,7 +131,9 @@ const AllProducts = () => {
                           <small class="w-50 text-center py-2">
                             <a class="text-body">
                               <i class="me-2">
-                                <FavoriteIcon onClick={()=>{console.log(item)}} />
+                                <FavoriteIcon
+                                  onClick={() => addWishListHandler(item)}
+                                />
                               </i>
                             </a>
                           </small>
