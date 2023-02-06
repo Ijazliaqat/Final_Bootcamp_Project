@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import "./header.css";
 
 const Header = () => {
@@ -45,7 +45,7 @@ const Header = () => {
                 </div>
               </div>
               <Link to='wishlists' class="nav-item nav-link">Wish List</Link>
-              <a href="contact.html" class="nav-item nav-link"><AccountCircleIcon /></a>
+              <Link to='log-in'><Button>Log In</Button></Link>
             </div>
             <div class="d-none d-lg-flex ms-2">
               <a class="btn-sm-square bg-white rounded-circle ms-3" href="">

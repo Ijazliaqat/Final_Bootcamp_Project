@@ -9,6 +9,10 @@
     padding: 30px;
 }
 
+.field-input{
+    height: 45px !important;
+}
+
 .container-1 {
 
     /* width: 150px;

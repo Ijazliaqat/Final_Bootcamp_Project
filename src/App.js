@@ -28,7 +28,7 @@ function App() {
         <Route path='history' element={<History />} />
         <Route path='products/:productId' element={<SingleProducts />} />
         <Route path='create-products' element={<CreateProduct />} />
-        <Route path='signin' element={<SignIn />} />
+        <Route path='log-in' element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='wishlists' element={<Wishlists />} />
       </Routes>
