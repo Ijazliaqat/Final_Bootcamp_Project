@@ -1,10 +1,15 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { signInThunk } from '../../../store/siginSlice/signinThunk';
+import { singinUserThunk } from '../../../store/auth/signinSlice';
 
 const useSignIn = () => {
 
-    const dispatch = useDispatch()
+    const { error } = useSelector(state => state.sigin)
+    console.log(error);
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const initialValuesSignIn = {
         email: '',
@@ -16,14 +21,13 @@ const useSignIn = () => {
         password: Yup.string().required('Enter your Password')
     })
 
-    const signInHandler = (values) =>{
+    const signInHandler = (values) => {
         // console.log(values);
 
-        dispatch(signInThunk(values))
-
+        dispatch(singinUserThunk({values,navigate}))
     }
     return {
-        initialValuesSignIn, signInSchema ,signInHandler
+        initialValuesSignIn, signInSchema, signInHandler, error
     }
 }
 

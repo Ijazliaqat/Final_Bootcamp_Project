@@ -5,13 +5,17 @@ import GitHub from '../../../assets/images/GitHub.png';
 import useSignIn from './use-sign-in';
 import { Formik, Form, Field } from 'formik';
 import './sigin-in.css'
+import AppAlert from '../../app-alert/app-alert';
+import { Link } from 'react-router-dom';
 
 export const SignIn = () => {
-  const { initialValuesSignIn, signInSchema, signInHandler } = useSignIn();
+
+  const { initialValuesSignIn, signInSchema, signInHandler, error } = useSignIn();
 
   return (
     <>
       <div className='container'>
+        <AppAlert errMesg={error} />
         <div className='d-flex flex-wrap  justify-content-center'>
           <div className='border border-danger rounded-5 my-2 py-2 px-4 d-flex mx-2'>
             <img src={google} alt="googleicon" />
@@ -77,12 +81,12 @@ export const SignIn = () => {
                 <h1 className="h3 text-center mb-3 fw-normal">Please sign in</h1>
 
                 <div className="form-floating">
-                  <Field name='email' type='email' className='col-12 field-input'  placeholder="Enter Email" />
-                 {errors.email&& touched.email && <div  className='text-danger'>{errors.email}</div> }
+                  <Field name='email' type='email' className='col-12 field-input' placeholder="Enter Email" />
+                  {errors.email && touched.email && <div className='text-danger'>{errors.email}</div>}
                 </div>
                 <div className="form-floating my-2">
-                  <Field name='password' type='password' className='col-12  field-input' placeholder='Password'/>
-                  {errors.password&& touched.password && <div className='text-danger'>{errors.password}</div> }
+                  <Field name='password' type='password' className='col-12  field-input' placeholder='Password' />
+                  {errors.password && touched.password && <div className='text-danger'>{errors.password}</div>}
                 </div>
 
                 <div className="checkbox mb-3">
@@ -91,6 +95,11 @@ export const SignIn = () => {
                   </label>
                 </div>
                 <button className="w-100 btn btn-lg btn-success" type="submit">Sign in</button>
+                <div class="position-relative">
+                  <Link to='/signup'>
+                    <button type="button" class="btn btn-secondary mt-3 position-absolute bottom-3 end-0">Create New Account</button>
+                  </Link>
+                </div>
               </Form>)}
           </Formik>
         </main>
