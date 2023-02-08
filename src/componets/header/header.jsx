@@ -3,9 +3,27 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
 import "./header.css";
+// import axios from 'axios';
+
+// axios.defaults.withCredentials = true;
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  // const [user, setUser] = useState()
+
+  // const sendGetRequest = async () => {
+  //   const res = await axios.get("http://localhost:9000/authentication/user", {
+  //     withCredentials: true
+  //   }).then(err => console.log(err));
+
+  //   const data = await res.data;
+  //   return data
+  // }
+
+  // useEffect(() => {
+  //   sendGetRequest().then(data => console.log(data.user))
+  // }, [])
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +44,7 @@ const Header = () => {
     <Grid sx={{ marginTop: '80px' }}>
       <div class={`container-fluid fixed-top ${scrolled ? 'scrolled' : ''} px-0 wow fadeIn`} data-wow-delay="0.1s">
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-          <Link to='/'  class="navbar-brand ms-4 ms-lg-0">
+          <Link to='/' class="navbar-brand ms-4 ms-lg-0">
             <h1 class="fw-bold text-success m-0">Bite <span class="text-secondary">Bazaar</span></h1>
           </Link>
           <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -46,6 +64,8 @@ const Header = () => {
               </div>
               <Link to='wishlists' class="nav-item nav-link">Wish List</Link>
               <Link to='log-in'><Button>Log In</Button></Link>
+              {/* <Link to='log-in'><Button> {user && <h1>{user?.name}</h1>}</Button></Link> */}
+             
             </div>
             <div class="d-none d-lg-flex ms-2">
               <a class="btn-sm-square bg-white rounded-circle ms-3" href="">

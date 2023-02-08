@@ -7,6 +7,8 @@ import "./all-products.css";
 import axios from "../../axios/axios";
 import { Rating } from "@mui/material";
 
+
+
 const AllProducts = () => {
   const [products, setProducts] = useState();
   const [wishList, setWishList] = useState([]);

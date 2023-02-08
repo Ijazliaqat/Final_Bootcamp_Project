@@ -1,41 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import carouselimg1 from '../../assets/images/carousel-1.jpg';
 import carouselimg2 from '../../assets/images/carousel-2.jpg';
 import './hero-section.css'
+import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+let firstRender = true;
 const HeroSection = () => {
+
+    const [user, setUser] = useState()
+
+    const refreshToken = async () => {
+        const res = await axios.get('http://localhost:9000/authentication/refresh', {
+            withCredentials: true
+        }).catch((err) => console.log(err));
+
+        const data = await res.data;
+        return data;
+    }
+    const sendGetRequest = async () => {
+        const res = await axios.get("http://localhost:9000/authentication/user", {
+            withCredentials: true
+        }).then(err => console.log(err));
+
+        const data = await res.data;
+        return data
+    }
+
+    useEffect(() => {
+        if (firstRender) {
+            firstRender = false;
+            sendGetRequest().then(data => setUser(data.user))
+        }
+        let interval = setInterval(() => { refreshToken().then(data => setUser(data.user)) }, 1000 * 29)
+
+        return () => clearInterval(interval)
+    }, [])
     return (
         <div>
             <div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
                 <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="w-100" src={carouselimg1} alt="Image"/>
-                                <div class="carousel-caption">
-                                    <div class="container">
-                                        <div class="row justify-content-start">
-                                            <div class="col-lg-7">
-                                                <h1 class="display-2 mb-5 text-black fw-bold animated slideInDown">Organic Food Is Good For Health</h1>
-                                                <a href="" class="btn btn-success rounded-pill py-sm-3 px-sm-5">Products</a>
-                                                <a href="" class="btn bg-light border-success text-black rounded-pill border-1 py-sm-3 px-sm-5 ms-3">Services</a>
-                                            </div>
+                            <img class="w-100" src={carouselimg1} alt="Image" />
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <div class="row justify-content-start">
+                                        <div class="col-lg-7">
+                                            <h1 class="display-2 mb-5 text-black fw-bold animated slideInDown">Organic Food Is Good For Health</h1>
+                                            {user && <h1>{user.name}</h1>}
+                                            <a href="" class="btn btn-success rounded-pill py-sm-3 px-sm-5">Products</a>
+                                            <a href="" class="btn bg-light border-success text-black rounded-pill border-1 py-sm-3 px-sm-5 ms-3">Services</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100" src={carouselimg2} alt="Image"/>
-                                <div class="carousel-caption">
-                                    <div class="container">
-                                        <div class="row justify-content-start">
-                                            <div class="col-lg-7">
-                                                <h1 class="display-2 mb-5 text-black fw-bold animated slideInDown">Natural Food Is Always Healthy</h1>
-                                                <a href="" class="btn btn-success rounded-pill py-sm-3 px-sm-5">Products</a>
-                                                <a href="" class="btn bg-light border-success text-black rounded-pill border-1 py-sm-3 px-sm-5 ms-3">Services</a>
-                                            </div>
+                            <img class="w-100" src={carouselimg2} alt="Image" />
+                            <div class="carousel-caption">
+                                <div class="container">
+                                    <div class="row justify-content-start">
+                                        <div class="col-lg-7">
+                                            <h1 class="display-2 mb-5 text-black fw-bold animated slideInDown">Natural Food Is Always Healthy</h1>
+                                            <a href="" class="btn btn-success rounded-pill py-sm-3 px-sm-5">Products</a>
+                                            <a href="" class="btn bg-light border-success text-black rounded-pill border-1 py-sm-3 px-sm-5 ms-3">Services</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"

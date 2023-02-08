@@ -22,6 +22,7 @@ export const singinUserThunk = createAsyncThunk('auth/signin',
 
 export const signupUserThunk = createAsyncThunk('auth/siginup',
     async ({values,navigate}) => {
+    
         try {
             const response = await axios.post('authentication/sign-up', values).then(()=>navigate('/log-in'))
             // navigate('/log-in')
@@ -47,6 +48,7 @@ const siginSlice = createSlice({
         // siginFullfilledReducer(builder, signInThunk)
 
         builder.addCase(singinUserThunk.fulfilled, (state, action) => {
+            console.log(action.payload);
             state.error = action.payload
         })
 
