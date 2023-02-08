@@ -6,6 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./all-products.css";
 import axios from "../../axios/axios";
 import { Rating } from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 
@@ -119,7 +120,8 @@ const AllProducts = () => {
                           <small class="w-50 text-center border-end py-2">
                             <a class="text-body" href="">
                               <i class=" me-2">
-                                <VisibilityIcon />
+                                <Link to={`products/${'1'}`} > <VisibilityIcon /> </Link>
+                               
                               </i>
                             </a>
                           </small>

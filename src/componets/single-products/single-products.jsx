@@ -1,13 +1,16 @@
 import { Rating } from "@mui/material";
 import React from "react";
+import { useParams } from "react-router-dom";
 import productImage from "../single-products/images/image.png";
 
 const SingleProducts = () => {
 
   const [value, setValue] = React.useState(2);
+  const param = useParams();
+  const {productId} = param
   return (
     <>
-
+    {productId}
     {/* Main Container for Product Short details  */}
      <div className="container1 bg-light justify-content-center my-3 mx-3 rounded text-center">
       <div className="headingContainer">
