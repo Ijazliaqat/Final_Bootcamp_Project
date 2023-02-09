@@ -8,7 +8,7 @@ import axios from "../../axios/axios";
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { singleProductItem } from "../../store/singleProduct/singleProductSlice";
+import { singleProductItem, singleProductItemHandler } from "../../store/singleProduct/singleProductSlice";
 
 
 
@@ -34,11 +34,16 @@ const AllProducts = () => {
       price: item.newPrice,
       image: item.image
     }
-    setWishList((prevData) => [...prevData, wishListObj]);
+    // setWishList((prevData) => [...prevData, wishListObj]);
 
-    const response = axios.post("/wish-list", wishList);
+    const response = axios.post("/user/wish-list", wishListObj);
     return response.data;
   };
+
+  const signleProductHandler = (item) => {
+    // console.log(item);
+    dispatch(singleProductItemHandler(item))
+  }
 
   // useEffect(() => {
   //   const response = axios.post("http://localhost:9000/add-product", wishList);
@@ -122,17 +127,17 @@ const AllProducts = () => {
                         </div>
                         <div class="d-flex border-top">
                           <small class="w-50 text-center border-end py-2">
-                            <a class="text-body" href="">
+                            <a class="text-body">
                               <i class=" me-2">
-                                {/* <Link to={`products/${item._id}`} >  */}
-                                <VisibilityIcon onClick={dispatch(singleProductItem(item))} /> 
-                                {/* </Link> */}
-                               
+                                <Link to={`products/${item._id}`} >
+                                  <VisibilityIcon onClick={() => signleProductHandler(item)} />
+                                </Link>
+
                               </i>
                             </a>
                           </small>
                           <small class="w-50 text-center border-end py-2">
-                            <a class="text-body" href="">
+                            <a class="text-body">
                               <i class="me-2">
                                 <AddShoppingCartIcon />
                               </i>

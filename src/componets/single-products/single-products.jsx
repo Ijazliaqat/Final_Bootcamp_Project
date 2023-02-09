@@ -1,11 +1,14 @@
 import { Rating } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import productImage from "../single-products/images/image.png";
 
 const SingleProducts = () => {
 
-  
+  const {singleProductItem} = useSelector(state=> state.singleProduct)
+
+  console.log(singleProductItem);
 
   const [value, setValue] = React.useState(2);
   const param = useParams();
@@ -16,7 +19,7 @@ const SingleProducts = () => {
     {/* Main Container for Product Short details  */}
      <div className="container1 bg-light justify-content-center my-3 mx-3 rounded text-center">
       <div className="headingContainer">
-        <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error praesentium quasi at</h3>
+        <h3>{singleProductItem.name}</h3>
       </div>
 
       {/* Container for Product Image and their Rating and pricing details  */}
@@ -24,7 +27,7 @@ const SingleProducts = () => {
       <div className="containerForProductShortDetails my-2 d-flex flex-wrap justify-content-center">
 
       <div className="productImageContainer d-flex ">
-        <img className="rounded img-fluid flex-start me-2 " src={productImage} alt="Product Image" />
+        <img className="rounded img-fluid flex-start me-2 " src={singleProductItem.image} alt="Product Image" />
       </div>
 
         {/* Code below for stars Rating:  */}
@@ -38,7 +41,7 @@ const SingleProducts = () => {
                 }}  />
           <p>200 Ratings | 22 Answered Questions</p>
           <h6>Brand: <small>By Ideas Pakistan</small></h6>
-          <h4>$ 14</h4>
+          <h4>$ {singleProductItem.newPrice}</h4>
           <div className="quantity justify-content-center d-flex ">
           {/* <h6 className="my-1">Quantity:</h6> */}
           <button type="button" class="btn btn-outline-success mx-2 ">+</button>
@@ -72,9 +75,6 @@ const SingleProducts = () => {
             ipsam quasi dolores aperiam, eius officia eos ab. Veniam possimus
             amet tempora saepe aut ab, incidunt laborum ipsa vero debitis!
             Voluptate labore, facilis, doloribus quia adipisci qui asperiores,
-            placeat quisquam exercitationem explicabo ab deserunt? Expedita. Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Doloremque recusandae et ips voluptas, nihil nemo accusamus dolor quasi sit! Veniam qui animi maxime totam. Odio exercitationem 
-            sint consectetur. Aut facilis tempora deleniti veritatis. Nisi aperiam laboriosam sed sint beatae porro.
           </p>
         </div>
       </div>
