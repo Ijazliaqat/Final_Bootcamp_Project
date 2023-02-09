@@ -7,6 +7,8 @@ import "./all-products.css";
 import axios from "../../axios/axios";
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { singleProductItem } from "../../store/singleProduct/singleProductSlice";
 
 
 
@@ -15,6 +17,8 @@ const AllProducts = () => {
   const [wishList, setWishList] = useState([]);
   const [newWishList, setNewWishList] = useState();
   const [value, setValue] = useState(2);
+
+  const dispatch = useDispatch();
 
   console.log(products);
 
@@ -120,7 +124,9 @@ const AllProducts = () => {
                           <small class="w-50 text-center border-end py-2">
                             <a class="text-body" href="">
                               <i class=" me-2">
-                                <Link to={`products/${'1'}`} > <VisibilityIcon /> </Link>
+                                {/* <Link to={`products/${item._id}`} >  */}
+                                <VisibilityIcon onClick={dispatch(singleProductItem(item))} /> 
+                                {/* </Link> */}
                                
                               </i>
                             </a>

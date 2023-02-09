@@ -5,6 +5,8 @@ import productImage from "../single-products/images/image.png";
 
 const SingleProducts = () => {
 
+  
+
   const [value, setValue] = React.useState(2);
   const param = useParams();
   const {productId} = param
