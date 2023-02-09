@@ -15,30 +15,30 @@ import { singleProductItem, singleProductItemHandler } from "../../store/singleP
 const AllProducts = () => {
   const [products, setProducts] = useState();
   const [wishList, setWishList] = useState([]);
-  const [newWishList, setNewWishList] = useState();
   const [value, setValue] = useState(2);
 
   const dispatch = useDispatch();
 
   console.log(products);
 
-  useEffect(() => {
-    axios.get("/all-products").then((response) => {
-      setProducts(response.data);
-    });
+  useEffect(async() => {
+  const token=localStorage.getItem("token")
+  console.log(token)
+   const producst = await axios.get("/all-products",{headers:{Authorization:`Bearer ${token}`}})
+   setProducts(producst.data)
+   console.log(producst)
   }, []);
 
   const addWishListHandler = async (item) => {
-    const wishListObj = {
-      name: item.name,
-      price: item.newPrice,
-      image: item.image
-    }
-    // setWishList((prevData) => [...prevData, wishListObj]);
-
-    const response = axios.post("/user/wish-list", wishListObj);
-    return response.data;
+    console.log(item);
+    const token=localStorage.getItem("token")
+    const response = await axios.put(`/user/wish-list/${item._id}`,{},{headers:{Authorization:`Bearer ${token}`}});
+    console.log(response)
   };
+
+  useEffect(()=>{
+    addWishListHandler();
+  },[])
 
   const signleProductHandler = (item) => {
     // console.log(item);

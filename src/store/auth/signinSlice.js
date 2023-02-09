@@ -7,9 +7,10 @@ const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 export const singinUserThunk = createAsyncThunk('auth/signin',
     async ({values,navigate}) => {
         try {
-            const response = await axios.put('authentication/log-in', values).then(()=>navigate('/'));
-            console.log(response.data);
-            // navigate('/')
+            const response = await axios.put('authentication/log-in', values)
+            // console.log(response.data.token);
+            localStorage.setItem('token', response.data.token)
+            navigate('/')
             return response.data
         } catch (error) {
             console.log(error.response.data.message);
