@@ -3,9 +3,9 @@ import axios from '../../axios/axios';
 import './wishlists.css'
 
 const Wishlists = () => {
-  useEffect(()=>{
+  useEffect(async()=>{
     const token = localStorage.getItem("token");
-    const wishlist = axios.get(`/user/wish-list`,{},{headers:{Authorization:`Bearer ${token}`}})
+    const wishlist = await axios.get(`/user/wish-list`,{},{headers:{Authorization:`Bearer ${token}`}})
     console.log(wishlist);
   },[])
   return (
