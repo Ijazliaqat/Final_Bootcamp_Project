@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './sigin-in.css'
 import google from '../../../assets/images/google.png';
 import Facebook from '../../../assets/images/facebook.png';
 import GitHub from '../../../assets/images/GitHub.png';
 
 export const SignIn = () => {
+
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
+
+ const signUphandle = (e)=>{
+  e.preventDefault();
+  console.log('❤❤😂');
+  console.log(signInEmail);
+  console.log(signInPassword);
+  
+
+ }
   return (
     <>
 
@@ -65,15 +77,15 @@ export const SignIn = () => {
         </div> */}
 
         <main className="form-signin w-50 m-auto">
-          <form>
+          <form onSubmit={signUphandle}>
               <h1 className="h3 text-center mb-3 fw-normal">Please sign in</h1>
 
               <div className="form-floating">
-                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={signInEmail} onChange={event => setSignInEmail(event.target.value)}/>
                   <label for="floatingInput">Email address</label>
               </div>
               <div className="form-floating my-2">
-                <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+                <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value={signInPassword} onChange={event => setSignInPassword(event.target.value)}/>
                   <label for="floatingPassword">Password</label>
               </div>
 

@@ -7,11 +7,19 @@ import "./all-products.css";
 import axios from "../../axios/axios";
 import { Rating } from "@mui/material";
 
+
 const AllProducts = () => {
   const [products, setProducts] = useState();
   const [wishList, setWishList] = useState([]);
   const [newWishList, setNewWishList] = useState();
   const [value, setValue] = useState(2);
+
+
+  const handleShowData = (item) => {
+   
+    console.log(item);
+   }
+
 
   console.log(products);
 
@@ -38,6 +46,7 @@ const AllProducts = () => {
   //   return response.data;
   // }, []);
   console.log(wishList);
+
   return (
     <div>
       <div class="container-xxl py-5">
@@ -86,7 +95,7 @@ const AllProducts = () => {
             <div id="tab-1" class="tab-pane fade show p-0 active">
               <div class="row g-4">
                 <div class="  d-flex flex-wrap fadeInUp" data-wow-delay="0.1s">
-                  {products?.map((item) => {
+                  {productsData?.map((item) => {
                     return (
                       <div
                         key={item._id}
@@ -103,7 +112,7 @@ const AllProducts = () => {
                           </div>
                         </div>
                         <div class="text-center p-4">
-                          <a class="d-block h5 mb-2" href="">
+                          <a class="d-block h5 mb-2"  onClick={()=>handleShowData(item)}>
                             {item.name}
                           </a>
                           <span class="text-primary me-1">
