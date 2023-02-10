@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,7 +58,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto p-4 p-lg-0">
-              <Link to="dashboard" className="nav-item nav-link active">
+              <Link to="/home" className="nav-item nav-link active">
                 Home
               </Link>
               <Link to="history" className="nav-item nav-link">
@@ -70,7 +70,7 @@ const Header = () => {
               <Link to="wishlists" className="nav-item nav-link">
                 Wish List
               </Link>
-              <Link className="d-flex align-items-center" to="/">
+              <Link className="d-flex align-items-center" to="/log-in">
                 <Button className="text-dark text-decoration-none" >Log Out</Button>
               </Link>
               {/* <Link to='log-in'><Button> {user && <h1>{user?.name}</h1>}</Button></Link> */}

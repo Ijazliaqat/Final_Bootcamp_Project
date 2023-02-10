@@ -45,7 +45,7 @@ const AllProducts = (data) => {
   }, [dispatch]);
 
   const signleProductHandler = (item) => {
-    console.log(item);
+    // console.log(item);
     dispatch(singleProductItemHandler(item));
   };
 

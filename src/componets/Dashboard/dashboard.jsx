@@ -10,9 +10,6 @@ const Dashboard = () => {
   return (
     <Grid  >
       <Header />
-      <HeroSection />
-      <AllProducts/>
-      <OurFeatures/>
       <Outlet />
     </Grid>
   )
