@@ -1,16 +1,22 @@
-import React from 'react';
-import axios from '../../axios/axios';
-import './wishlists.css'
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import axios from "../../axios/axios";
+import { getWishListThunk } from "../../store/wishlistSlice/wish-list-slice";
+import "./wishlists.css";
 
 const Wishlists = () => {
-  // useEffect(async()=>{
-  //   const token = localStorage.getItem("token");
-  //   const wishlist = await axios.get(`/user/wish-list`,{},{headers:{Authorization:`Bearer ${token}`}})
-  //   console.log(wishlist);
-  // },[])
-  return (
-    <div>Wishlists</div>
-  )
-}
+  const [wishlistUser, setWishListUser] = useState([]);
+  const dispatch = useDispatch();
+  useEffect(async () => {
+    const token = localStorage.getItem("token");
+    const wishlist = await axios.get("/user/wishlist", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-export default Wishlists
+    setWishListUser(wishlist.data[0]?.wishlists);
+  }, []);
+
+  return <div>Wishlists</div>;
+};
+
+export default Wishlists;

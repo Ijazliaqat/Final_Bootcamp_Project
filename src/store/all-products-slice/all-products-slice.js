@@ -6,10 +6,10 @@ export const getAllProductsThunk = createAsyncThunk('products',
         console.log(token);
         try {
             const response = await axios.get('/all-products')
-            console.log(response);
+            // console.log(response);
             return response.data
         } catch (error) {
-            console.log(error.response.data.message);
+            // console.log(error.response.data.message);
             // alert(error.response.data.message)
             return error.response.data.message
         }
