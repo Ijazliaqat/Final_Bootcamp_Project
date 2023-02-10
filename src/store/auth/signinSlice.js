@@ -10,7 +10,7 @@ export const singinUserThunk = createAsyncThunk('auth/signin',
             const response = await axios.put('authentication/log-in', values)
             // console.log(response.data.token);
             localStorage.setItem('token', response.data.token)
-            navigate('/dashboard')
+            navigate('/home')
             return response.data
         } catch (error) {
             console.log(error.response.data.message);
