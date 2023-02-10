@@ -1,7 +1,11 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React from 'react';
+
 
 function Forget() {
+
+  function clickHandler() {
+    console.log("Reset Pasword")
+  }
   return (
     <main className="form-signin d-flex justify-content-center">
   <form>
@@ -14,7 +18,7 @@ function Forget() {
       <label for="floatingInput">Email address</label>
     </div>
    
-    <button class="w-100 btn btn-lg btn-success mt-5" type="submit">Reset Password</button>
+    <button class="w-100 btn btn-lg btn-success mt-5" type="submit" onClick={clickHandler}>Reset Password</button>
     <p class="mt-5 mb-3 ">Not a Member? <a href="">Signup for a account now</a></p>
     
   </form>
