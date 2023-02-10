@@ -6,6 +6,11 @@ import GitHub from '../../../assets/images/GitHub.png';
 
 export const SignIn = () => {
 
+  const emailDataArr = ['hamxa@gmail.com', 'khan@gmail.com', 'pakistan@gmail.com'];
+  const passwordDataArr = ['1234567', '231231', '242342353'];
+
+
+
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
 
@@ -14,6 +19,12 @@ export const SignIn = () => {
   console.log('❤❤😂');
   console.log(signInEmail);
   console.log(signInPassword);
+
+  if(emailDataArr.includes(signInEmail)=='true' && passwordDataArr.includes(signInPassword)=='true'){
+    console.log('❤❤❤❤❤❤');
+  }else{
+    console.log('😂😂😂😂😂😂');
+  }
   
 
  }
