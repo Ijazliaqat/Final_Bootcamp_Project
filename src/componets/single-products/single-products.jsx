@@ -1,5 +1,5 @@
 import { Rating } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import productImage from "../single-products/images/image.png";
@@ -8,9 +8,7 @@ const SingleProducts = () => {
 
   const {singleProductItem} = useSelector(state=> state.singleProduct)
 
-  console.log(singleProductItem);
-
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = useState(2);
   const param = useParams();
   const {productId} = param
   return (
@@ -19,7 +17,7 @@ const SingleProducts = () => {
     {/* Main Container for Product Short details  */}
      <div className="container1 bg-light justify-content-center my-3 mx-3 rounded text-center">
       <div className="headingContainer">
-        <h3>{singleProductItem.name}</h3>
+        <h3>{singleProductItem?.name}</h3>
       </div>
 
       {/* Container for Product Image and their Rating and pricing details  */}
@@ -27,7 +25,7 @@ const SingleProducts = () => {
       <div className="containerForProductShortDetails my-2 d-flex flex-wrap justify-content-center">
 
       <div className="productImageContainer d-flex ">
-        <img className="rounded img-fluid flex-start me-2 " src={singleProductItem.image} alt="Product Image" />
+        <img className="rounded img-fluid flex-start me-2 " src={singleProductItem?.image} alt="Product Image" />
       </div>
 
         {/* Code below for stars Rating:  */}
@@ -41,20 +39,20 @@ const SingleProducts = () => {
                 }}  />
           <p>200 Ratings | 22 Answered Questions</p>
           <h6>Brand: <small>By Ideas Pakistan</small></h6>
-          <h4>$ {singleProductItem.newPrice}</h4>
+          <h4>$ {singleProductItem?.newPrice}</h4>
           <div className="quantity justify-content-center d-flex ">
           {/* <h6 className="my-1">Quantity:</h6> */}
-          <button type="button" class="btn btn-outline-success mx-2 ">+</button>
+          <button type="button" className="btn btn-outline-success mx-2 ">+</button>
           <input
             type="text"
-            class="form-control w-25 rounded border-success "
+            className="form-control w-25 rounded border-success "
             id="floatingInput"
             placeholder="Quantity"
               />
-              <button type="button" class="btn btn-outline-success mx-2">-</button>
+              <button type="button" className="btn btn-outline-success mx-2">-</button>
           </div>
-          <button type="button" class="btn mt-5 w-50 btn-success mx-2">Add To Cart</button>
-          <button type="button" class="btn my-1 w-50 btn-success mx-2">Buy Now</button>
+          <button type="button" className="btn mt-5 w-50 btn-success mx-2">Add To Cart</button>
+          <button type="button" className="btn my-1 w-50 btn-success mx-2">Buy Now</button>
       </div>
 
       </div>

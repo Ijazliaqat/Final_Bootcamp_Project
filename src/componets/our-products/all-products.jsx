@@ -7,61 +7,65 @@ import "./all-products.css";
 import axios from "../../axios/axios";
 import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { singleProductItem, singleProductItemHandler } from "../../store/singleProduct/singleProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  singleProductItem,
+  singleProductItemHandler,
+} from "../../store/singleProduct/singleProductSlice";
+import { getAllProductsThunk } from "../../store/all-products-slice/all-products-slice";
 
-
-
-const AllProducts = () => {
+const AllProducts = (data) => {
   const [products, setProducts] = useState();
   const [wishList, setWishList] = useState([]);
   const [value, setValue] = useState(2);
-
+  
+  const { productsArr } = useSelector((state) => state.allproducts);
+  
+  console.log(productsArr);
   const dispatch = useDispatch();
 
   console.log(products);
 
-  useEffect(async() => {
-  const token=localStorage.getItem("token")
-  console.log(token)
-   const producst = await axios.get("/all-products",{headers:{Authorization:`Bearer ${token}`}})
-   setProducts(producst.data)
-   console.log(producst)
-  }, []);
+  const token = localStorage?.getItem("token");
+  //   console.log(token);
 
   const addWishListHandler = async (item) => {
     console.log(item);
-    const token=localStorage.getItem("token")
-    const response = await axios.put(`/user/wish-list/${item._id}`,{},{headers:{Authorization:`Bearer ${token}`}});
-    console.log(response)
+    const token = localStorage?.getItem("token");
+    const response = await axios.put(
+      `/user/wish-list/${item?._id}`,
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log(response);
   };
 
-  useEffect(()=>{
-    addWishListHandler();
-  },[])
+  useEffect(() => {
+    dispatch(getAllProductsThunk(token));
+  }, [dispatch]);
 
   const signleProductHandler = (item) => {
-    // console.log(item);
-    dispatch(singleProductItemHandler(item))
-  }
+    console.log(item);
+    dispatch(singleProductItemHandler(item));
+  };
 
   // useEffect(() => {
   //   const response = axios.post("http://localhost:9000/add-product", wishList);
   //   return response.data;
   // }, []);
-  console.log(wishList);
+  // console.log(wishList);
   return (
     <div>
-      <div class="container-xxl py-5">
-        <div class="container">
-          <div class="row g-0 gx-5 align-items-end">
-            <div class="col-lg-6">
+      <div className="container-xxl py-5">
+        <div className="container">
+          <div className="row g-0 gx-5 align-items-end">
+            <div className="col-lg-6">
               <div
-                class="section-header text-start mb-5  fadeInUp"
+                className="section-header text-start mb-5  fadeInUp"
                 data-wow-delay="0.1s"
                 style={{ maxWidth: "500px" }}
               >
-                <h1 class="display-5 mb-3">Popular Food Items</h1>
+                <h1 className="display-5 mb-3">Popular Food Items</h1>
                 <p>
                   See all our popular Food Items in this week. Get some special
                   offer with free shipping.
@@ -70,7 +74,7 @@ const AllProducts = () => {
             </div>
 
             <div
-              class="d-flex bg-success  rounded-2 flex-wrap py-3 justify-content-between text-start  slideInRight"
+              className="d-flex bg-success  rounded-2 flex-wrap py-3 justify-content-between text-start  slideInRight"
               data-wow-delay="0.1s"
             >
               <div className="filter-items">
@@ -94,58 +98,60 @@ const AllProducts = () => {
             </div>
           </div>
 
-          <div class="tab-content">
-            <div id="tab-1" class="tab-pane fade show p-0 active">
-              <div class="row g-4">
-                <div class="  d-flex flex-wrap fadeInUp" data-wow-delay="0.1s">
-                  {products?.map((item) => {
+          <div className="tab-content">
+            <div id="tab-1" className="tab-pane fade show p-0 active">
+              <div className="row g-4">
+                <div
+                  className="  d-flex flex-wrap fadeInUp"
+                  data-wow-delay="0.1s"
+                >
+                  {productsArr?.map((item) => {
                     return (
                       <div
-                        key={item._id}
-                        class="product-item  shadow col-xl-3 col-lg-3 col-md-3 mt-3 justify-content-between"
+                        key={item?._id}
+                        className="product-item  shadow col-xl-3 col-lg-3 col-md-3 mt-3 justify-content-between"
                       >
-                        <div class="position-relative bg-light overflow-hidden">
+                        <div className="position-relative bg-light overflow-hidden">
                           <img
-                            class="img-fluid w-100"
-                            src={item.image}
+                            className="img-fluid w-100"
+                            src={item?.image}
                             alt="image"
                           />
-                          <div class="bg-success rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                          <div className="bg-success rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                             New
                           </div>
                         </div>
-                        <div class="text-center p-4">
-                          <a class="d-block h5 mb-2" href="">
-                            {item.name}
+                        <div className="text-center p-4">
+                          <a className="d-block h5 mb-2" href="">
+                            {item?.name}
                           </a>
-                          <span class="text-primary me-1">
-                            ${item.newPrice}
+                          <span className="text-primary me-1">
+                            ${item?.newPrice}
                           </span>
-                          <span class="text-body text-decoration-line-through">
-                            ${item.oldPrice}
+                          <span className="text-body text-decoration-line-through">
+                            ${item?.oldPrice}
                           </span>
                         </div>
-                        <div class="d-flex border-top">
-                          <small class="w-50 text-center border-end py-2">
-                            <a class="text-body">
-                              <i class=" me-2">
-                                <Link to={`products/${item._id}`} >
-                                  <VisibilityIcon onClick={() => signleProductHandler(item)} />
-                                </Link>
-
-                              </i>
-                            </a>
+                        <div className="d-flex border-top">
+                          <small className="w-50 text-center border-end py-2">
+                            <i className=" me-2 text-body">
+                              <Link to={`products/${item?._id}`}>
+                                <VisibilityIcon
+                                  onClick={() => signleProductHandler(item)}
+                                />
+                              </Link>
+                            </i>
                           </small>
-                          <small class="w-50 text-center border-end py-2">
-                            <a class="text-body">
-                              <i class="me-2">
+                          <small className="w-50 text-center border-end py-2">
+                            <a className="text-body">
+                              <i className="me-2">
                                 <AddShoppingCartIcon />
                               </i>
                             </a>
                           </small>
-                          <small class="w-50 text-center py-2">
-                            <a class="text-body">
-                              <i class="me-2">
+                          <small className="w-50 text-center py-2">
+                            <a className="text-body">
+                              <i className="me-2">
                                 <FavoriteIcon
                                   onClick={() => addWishListHandler(item)}
                                 />

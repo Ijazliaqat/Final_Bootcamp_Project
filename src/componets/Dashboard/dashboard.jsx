@@ -9,8 +9,9 @@ import AllProducts from '../our-products/all-products'
 const Dashboard = () => {
   return (
     <Grid  >
+      <Header />
       <HeroSection />
-      <AllProducts />
+      <AllProducts/>
       <OurFeatures/>
       <Outlet />
     </Grid>

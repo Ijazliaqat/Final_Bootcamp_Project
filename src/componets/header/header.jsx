@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from "react";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
 import "./header.css";
+import { useDispatch, useSelector } from "react-redux";
+import { isLogged } from "../../store/auth/signinSlice";
 // import axios from 'axios';
 
 // axios.defaults.withCredentials = true;
 
 const Header = () => {
+  const dispatch = useDispatch()
   const [scrolled, setScrolled] = useState(false);
-  // const [user, setUser] = useState()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const sendGetRequest = async () => {
-  //   const res = await axios.get("http://localhost:9000/authentication/user", {
-  //     withCredentials: true
-  //   }).then(err => console.log(err));
-
-  //   const data = await res.data;
-  //   return data
-  // }
-
-  // useEffect(() => {
-  //   sendGetRequest().then(data => console.log(data.user))
-  // }, [])
 
 
   useEffect(() => {
@@ -34,48 +25,65 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <Grid sx={{ marginTop: '80px' }}>
-      <div class={`container-fluid fixed-top ${scrolled ? 'scrolled' : ''} px-0 wow fadeIn`} data-wow-delay="0.1s">
-        <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-          <Link to='/' class="navbar-brand ms-4 ms-lg-0">
-            <h1 class="fw-bold text-success m-0">Bite <span class="text-secondary">Bazaar</span></h1>
+    <Grid sx={{ marginTop: "80px" }}>
+      <div
+        className={`container-fluid fixed-top ${
+          scrolled ? "scrolled" : ""
+        } px-0 wow fadeIn`}
+        data-wow-delay="0.1s"
+      >
+        <nav
+          className="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn"
+          data-wow-delay="0.1s"
+        >
+          <Link to="/" className="navbar-brand ms-4 ms-lg-0">
+            <h1 className="fw-bold text-success m-0">
+              Bite <span className="text-secondary">Bazaar</span>
+            </h1>
           </Link>
-          <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
+          <button
+            type="button"
+            className="navbar-toggler me-4"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-              <Link to='/' class="nav-item nav-link active">Home</Link>
-              <Link to='history' class="nav-item nav-link">History</Link>
-              <Link class="nav-item nav-link" to='products' >Products</Link>
-              <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                <div class="dropdown-menu m-0">
-                  <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                  <a href="404.html" class="dropdown-item">404 Page</a>
-                </div>
-              </div>
-              <Link to='wishlists' class="nav-item nav-link">Wish List</Link>
-              <Link to='log-in'><Button>Log In</Button></Link>
+          <div className="collapse navbar-collapse" id="navbarCollapse">
+            <div className="navbar-nav ms-auto p-4 p-lg-0">
+              <Link to="dashboard" className="nav-item nav-link active">
+                Home
+              </Link>
+              <Link to="history" className="nav-item nav-link">
+                History
+              </Link>
+              <Link className="nav-item nav-link" to="products">
+                Products
+              </Link>
+              <Link to="wishlists" className="nav-item nav-link">
+                Wish List
+              </Link>
+              <Link className="d-flex align-items-center" to="/">
+                <Button className="text-dark text-decoration-none" >Log Out</Button>
+              </Link>
               {/* <Link to='log-in'><Button> {user && <h1>{user?.name}</h1>}</Button></Link> */}
-             
             </div>
-            <div class="d-none d-lg-flex ms-2">
-              <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                <small class="fa fa-search text-body"></small>
+            <div className="d-none d-lg-flex ms-2">
+              <a className="btn-sm-square bg-white rounded-circle ms-3" href="">
+                <small className="fa fa-search text-body"></small>
               </a>
-              <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                <small class="fa fa-user text-body"></small>
+              <a className="btn-sm-square bg-white rounded-circle ms-3" href="">
+                <small className="fa fa-user text-body"></small>
               </a>
-              <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                <small class="fa fa-shopping-bag text-body"></small>
+              <a className="btn-sm-square bg-white rounded-circle ms-3" href="">
+                <small className="fa fa-shopping-bag text-body"></small>
               </a>
             </div>
           </div>

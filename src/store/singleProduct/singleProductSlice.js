@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    singleProductItem:[]
+    singleProductItem:{}
 }
 
 export const singleProuctSlice = createSlice({
@@ -10,7 +10,7 @@ export const singleProuctSlice = createSlice({
   reducers: {
     singleProductItemHandler: (state,action)=>{
         // console.log(action.payload);
-        state.singleProductItem = action.payload
+        state.singleProductItem = action?.payload
     }
   },
 });

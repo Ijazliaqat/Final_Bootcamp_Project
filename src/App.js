@@ -20,15 +20,15 @@ import Wishlists from './componets/wishlists/wishlists';
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <AddCart />
       <Routes>
-        <Route path='/' element={<Dashboard />} />
+        <Route path='dashboard' element={<Dashboard />} />
         <Route path='products' element={<AllProducts />} />
         <Route path='history' element={<History />} />
         <Route path='products/:productId' element={<SingleProducts />} />
         <Route path='create-products' element={<CreateProduct />} />
-        <Route path='log-in' element={<SignIn />} />
+        <Route path='/' element={<SignIn />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='wishlists' element={<Wishlists />} />
       </Routes>
