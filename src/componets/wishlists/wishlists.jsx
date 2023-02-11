@@ -6,7 +6,6 @@ import "./wishlists.css";
 
 const Wishlists = () => {
   const [wishlistUser, setWishListUser] = useState([]);
-  const dispatch = useDispatch();
   useEffect(async () => {
     const token = localStorage.getItem("token");
     const wishlist = await axios.get("/user/wishlist", {
@@ -16,6 +15,7 @@ const Wishlists = () => {
     setWishListUser(wishlist.data[0]?.wishlists);
   }, []);
 
+  console.log(wishlistUser);
   return <div>Wishlists</div>;
 };
 
