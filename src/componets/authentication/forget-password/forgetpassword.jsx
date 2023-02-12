@@ -25,7 +25,12 @@ function Forget() {
     console.log(email);
      if (!validateEmail(email)) {
       setError("Invalid email address");
-    } else {
+    } 
+    else if (email.length==0){
+      setError(true)
+
+    }
+    else {
       setError(null);
     }
   };
@@ -42,7 +47,7 @@ function Forget() {
         <div className="form-floating">
           <input type="email" className="form-control" id="floatingInput" value={email} placeholder="name@example.com" onChange={handleChange}/>
           <label for="floatingInput">Email address</label>
-          {error && <p style={{color:"red"}}>{error}</p>}
+          {error && email.length==0&&<p style={{color:"red"}}>{error}</p>}
           
           
         
