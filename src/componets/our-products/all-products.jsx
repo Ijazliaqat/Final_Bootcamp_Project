@@ -22,7 +22,9 @@ const AllProducts = (data) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [value, setValue] = useState(2);
 
+  
   const { productsArr } = useSelector((state) => state.allproducts);
+  console.log(productsArr);
   const dispatch = useDispatch();
 
   const handleCategorySelection = (category) => {
