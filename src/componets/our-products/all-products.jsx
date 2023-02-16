@@ -19,7 +19,7 @@ import { TabPanel } from "@mui/lab";
 
 const AllProducts = (data) => {
   const [products, setProducts] = useState();
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [value, setValue] = useState(2);
 
   
@@ -32,10 +32,10 @@ const AllProducts = (data) => {
     setSelectedCategory(category);
   };
 
-  const filteredProducts =
-    selectedCategory === "All"
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
+  // const filteredProducts =
+  //   selectedCategory === ""
+  //     ? products
+  //     : products?.filter((product) => product?.category === selectedCategory);
 
   const token = localStorage?.getItem("token");
   const addWishListHandler = async (item) => {
@@ -50,8 +50,8 @@ const AllProducts = (data) => {
   };
 
   useEffect(() => {
-    dispatch(getAllProductsThunk(token));
-  }, [dispatch]);
+    dispatch(getAllProductsThunk(selectedCategory));
+  }, [dispatch,selectedCategory]);
 
   useEffect(() => {
     setProducts(productsArr);
@@ -122,7 +122,7 @@ const AllProducts = (data) => {
                   onChange={handleChange}
                   aria-label="lab API tabs example"
                 >
-                  <Tab label="All Products" onClick={() => handleCategorySelection('All')} value="1" />
+                  <Tab label="All Products" onClick={() => handleCategorySelection('')} value="1" />
                   <Tab label="Baked Goods" onClick={() => handleCategorySelection('Baked')} value="2" />
                   <Tab label="Pantry Staples" onClick={() => handleCategorySelection('Pantry')} value="3" />
                   <Tab label="Fresh Products" onClick={() => handleCategorySelection('Fresh')} value="4" />
@@ -138,7 +138,7 @@ const AllProducts = (data) => {
                   className="  d-flex flex-wrap fadeInUp"
                   data-wow-delay="0.1s"
                 >
-                  {filteredProducts?.map((item) => {
+                  {productsArr?.map((item) => {
                     return (
                       <div
                         key={item?._id}
