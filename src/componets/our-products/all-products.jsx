@@ -5,7 +5,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./all-products.css";
 import axios from "../../axios/axios";
-import { Rating } from "@mui/material";
+import { Box, Rating, Tab } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,22 +13,31 @@ import {
   singleProductItemHandler,
 } from "../../store/singleProduct/singleProductSlice";
 import { getAllProductsThunk } from "../../store/all-products-slice/all-products-slice";
+import { TabContext } from "@mui/lab";
+import { TabList } from "@mui/lab";
+import { TabPanel } from "@mui/lab";
 
 const AllProducts = (data) => {
   const [products, setProducts] = useState();
-  const [wishList, setWishList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [value, setValue] = useState(2);
+
   
   const { productsArr } = useSelector((state) => state.allproducts);
-  
   console.log(productsArr);
   const dispatch = useDispatch();
-
+  
   console.log(products);
+  const handleCategorySelection = (category) => {
+    setSelectedCategory(category);
+  };
+
+  // const filteredProducts =
+  //   selectedCategory === ""
+  //     ? products
+  //     : products?.filter((product) => product?.category === selectedCategory);
 
   const token = localStorage?.getItem("token");
-  //   console.log(token);
-
   const addWishListHandler = async (item) => {
     console.log(item);
     const token = localStorage?.getItem("token");
@@ -37,16 +46,25 @@ const AllProducts = (data) => {
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    console.log(response);
+    // console.log(response);
   };
 
   useEffect(() => {
-    dispatch(getAllProductsThunk(token));
-  }, [dispatch]);
+    dispatch(getAllProductsThunk(selectedCategory));
+  }, [dispatch,selectedCategory]);
+
+  useEffect(() => {
+    setProducts(productsArr);
+  }, [productsArr]);
 
   const signleProductHandler = (item) => {
-    // console.log(item);
     dispatch(singleProductItemHandler(item));
+  };
+
+  const [tabValue, setTabValue] = React.useState("1");
+
+  const handleChange = (event, newValue) => {
+    setTabValue(newValue);
   };
 
   // useEffect(() => {
@@ -97,6 +115,21 @@ const AllProducts = (data) => {
               </div>
             </div>
           </div>
+          <Box sx={{ width: "100%", typography: "body1" }}>
+            <TabContext value={tabValue}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <TabList
+                  onChange={handleChange}
+                  aria-label="lab API tabs example"
+                >
+                  <Tab label="All Products" onClick={() => handleCategorySelection('')} value="1" />
+                  <Tab label="Baked Goods" onClick={() => handleCategorySelection('Baked')} value="2" />
+                  <Tab label="Pantry Staples" onClick={() => handleCategorySelection('Pantry')} value="3" />
+                  <Tab label="Fresh Products" onClick={() => handleCategorySelection('Fresh')} value="4" />
+                </TabList>
+              </Box>
+            </TabContext>
+          </Box>
 
           <div className="tab-content">
             <div id="tab-1" className="tab-pane fade show p-0 active">
