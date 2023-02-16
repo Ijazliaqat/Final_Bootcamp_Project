@@ -25,7 +25,7 @@ function App() {
           <Route path="/home" element={<HeroSection />} />
           <Route path="products" element={<AllProducts />} />
           <Route path="history" element={<History />} />
-          <Route path="products/:productId" element={<SingleProducts />} />
+          <Route path="home/products/:productId" element={<SingleProducts />} />
           <Route path="wishlists" element={<Wishlists />} />
         </Route>
         <Route path="create-products" element={<CreateProduct />} />

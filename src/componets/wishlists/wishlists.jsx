@@ -12,7 +12,6 @@ const Wishlists = () => {
     const wishlist = await axios.get("/user/wishlist", {
       headers: { Authorization: `Bearer ${token}` },
     });
-
     setWishListUser(wishlist.data[0]?.wishlists);
   }, []);
 
