@@ -26,9 +26,9 @@ const AllProducts = (data) => {
   const { productsArr } = useSelector((state) => state.allproducts);
   console.log(productsArr);
   const dispatch = useDispatch();
-
+  
+  console.log(products);
   const handleCategorySelection = (category) => {
-    console.log(category);
     setSelectedCategory(category);
   };
 
