@@ -1,15 +1,5 @@
 import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  SwipeableDrawer,
+  Avatar, Badge, Box, Button, Divider, Grid, List, ListItem, ListItemButton, ListItemText, SwipeableDrawer,
 } from "@mui/material";
 import React from "react";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
@@ -17,11 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./add-cart.css";
 import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  decrement,
-  increment,
-  removeItem,
-} from "../../store/addCartSlice/addCartSlice";
+import { decrement, increment, removeItem} from "../../store/addCartSlice/addCartSlice";
 
 const AddCart = () => {
   const [state, setState] = React.useState({ left: false });
@@ -110,15 +96,15 @@ const AddCart = () => {
   return (
     <div>
       <div>
-        <Button className="add-cart" onClick={toggleDrawer("left", true)}>
-          <Badge badgeContent={1} color="success">
+        {cartItems?.length && <Button className="add-cart" onClick={toggleDrawer("left", true)}>
+          <Badge badgeContent={cartItems?.length} color="success">
             <ShoppingBagIcon
               className="add-cart-icon"
               sx={{ color: "#157347" }}
             />
           </Badge>
           <span className="add-cart-price">00</span>
-        </Button>
+        </Button>}
         <SwipeableDrawer
           anchor={"left"}
           open={state["left"]}
