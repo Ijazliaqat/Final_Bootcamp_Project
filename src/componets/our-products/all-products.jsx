@@ -5,7 +5,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./all-products.css";
 import axios from "../../axios/axios";
-import { Box, Rating, Tab } from "@mui/material";
+import { Alert, Box, Button, Rating, Snackbar, Tab } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,42 +16,58 @@ import { getAllProductsThunk } from "../../store/all-products-slice/all-products
 import { TabContext } from "@mui/lab";
 import { TabList } from "@mui/lab";
 import { TabPanel } from "@mui/lab";
+import AppAlert from "../app-alert/app-alert";
+import { addToCartItem } from "../../store/addCartSlice/addCartSlice";
 
 const AllProducts = (data) => {
+  const [state, setState] = useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+  const [aletMesg, setAlertMesg] = useState("");
   const [products, setProducts] = useState();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [value, setValue] = useState(2);
 
-  
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = (newState, alertMesg) => () => {
+    console.log(newState);
+    setState({ open: true, ...newState });
+    setAlertMesg(alertMesg.mesg);
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
   const { productsArr } = useSelector((state) => state.allproducts);
   console.log(productsArr);
   const dispatch = useDispatch();
-  
+
   console.log(products);
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
   };
 
-  // const filteredProducts =
-  //   selectedCategory === ""
-  //     ? products
-  //     : products?.filter((product) => product?.category === selectedCategory);
-
   const token = localStorage?.getItem("token");
   const addWishListHandler = async (item) => {
     console.log(item);
+
+    setAlertMesg('Successfully added to Wishlist')
+
     const token = localStorage?.getItem("token");
     const response = await axios.put(
       `/user/wish-list/${item?._id}`,
       {},
-      { headers: { Authorization: `Bearer ${token}` } }
+      { headers: { Authorization: `Bearer ${token}` }}
     );
-    // console.log(response);
   };
 
   useEffect(() => {
     dispatch(getAllProductsThunk(selectedCategory));
-  }, [dispatch,selectedCategory]);
+  }, [dispatch, selectedCategory]);
 
   useEffect(() => {
     setProducts(productsArr);
@@ -66,6 +82,31 @@ const AllProducts = (data) => {
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
+
+//   image
+// : 
+// "data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAA
+// name
+// : 
+// "Nashpati"
+// newPrice
+// : 
+// "2"
+// oldPrice
+// : 
+// "3"
+// selectCategory
+// : 
+// "Fresh"
+  const addtocarthandler = (item) =>{
+    let cartObj = {
+      id: item._id,
+      name: item.name,
+      quantity: 1,
+      price: item.newPrice
+    }
+    dispatch(addToCartItem(cartObj))
+  }
 
   // useEffect(() => {
   //   const response = axios.post("http://localhost:9000/add-product", wishList);
@@ -122,10 +163,26 @@ const AllProducts = (data) => {
                   onChange={handleChange}
                   aria-label="lab API tabs example"
                 >
-                  <Tab label="All Products" onClick={() => handleCategorySelection('')} value="1" />
-                  <Tab label="Baked Goods" onClick={() => handleCategorySelection('Baked')} value="2" />
-                  <Tab label="Pantry Staples" onClick={() => handleCategorySelection('Pantry')} value="3" />
-                  <Tab label="Fresh Products" onClick={() => handleCategorySelection('Fresh')} value="4" />
+                  <Tab
+                    label="All Products"
+                    onClick={() => handleCategorySelection("")}
+                    value="1"
+                  />
+                  <Tab
+                    label="Baked Goods"
+                    onClick={() => handleCategorySelection("Baked")}
+                    value="2"
+                  />
+                  <Tab
+                    label="Pantry Staples"
+                    onClick={() => handleCategorySelection("Pantry")}
+                    value="3"
+                  />
+                  <Tab
+                    label="Fresh Products"
+                    onClick={() => handleCategorySelection("Fresh")}
+                    value="4"
+                  />
                 </TabList>
               </Box>
             </TabContext>
@@ -178,7 +235,9 @@ const AllProducts = (data) => {
                           <small className="w-50 text-center border-end py-2">
                             <a className="text-body">
                               <i className="me-2">
-                                <AddShoppingCartIcon />
+                                <AddShoppingCartIcon
+                                  onClick={()=>{addtocarthandler(item)}}
+                                />
                               </i>
                             </a>
                           </small>
@@ -186,7 +245,9 @@ const AllProducts = (data) => {
                             <a className="text-body">
                               <i className="me-2">
                                 <FavoriteIcon
-                                  onClick={() => addWishListHandler(item)}
+                                  onClick={() => {
+                                    addWishListHandler(item);
+                                  }}
                                 />
                               </i>
                             </a>
@@ -201,6 +262,20 @@ const AllProducts = (data) => {
           </div>
         </div>
       </div>
+
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        autoHideDuration={1500}
+        onClose={handleClose}
+        // message={aletMesg}
+        severity="success"
+        key={vertical + horizontal}
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          {aletMesg}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
