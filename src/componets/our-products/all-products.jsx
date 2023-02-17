@@ -53,7 +53,6 @@ const AllProducts = (data) => {
 
   const token = localStorage?.getItem("token");
   const addWishListHandler = async (item) => {
-    console.log(item);
 
     setAlertMesg('Successfully added to Wishlist')
 
@@ -83,36 +82,16 @@ const AllProducts = (data) => {
     setTabValue(newValue);
   };
 
-//   image
-// : 
-// "data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAA
-// name
-// : 
-// "Nashpati"
-// newPrice
-// : 
-// "2"
-// oldPrice
-// : 
-// "3"
-// selectCategory
-// : 
-// "Fresh"
   const addtocarthandler = (item) =>{
     let cartObj = {
-      id: item._id,
-      name: item.name,
+      id: item?._id,
+      name: item?.name,
       quantity: 1,
-      price: item.newPrice
+      price: item?.newPrice
     }
     dispatch(addToCartItem(cartObj))
   }
 
-  // useEffect(() => {
-  //   const response = axios.post("http://localhost:9000/add-product", wishList);
-  //   return response.data;
-  // }, []);
-  // console.log(wishList);
   return (
     <div>
       <div className="container-xxl py-5">

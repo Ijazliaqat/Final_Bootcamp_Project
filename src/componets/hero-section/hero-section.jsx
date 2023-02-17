@@ -1,44 +1,20 @@
 import React, { useEffect, useState } from "react";
 import carouselimg1 from "../../assets/images/carousel-1.jpg";
 import carouselimg2 from "../../assets/images/carousel-2.jpg";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import PaymentIcon from '@mui/icons-material/Payment';
 import "./hero-section.css";
 import axios from "axios";
 import AllProducts from "../our-products/all-products";
 import OurFeatures from "../our-features/our-features";
+import { Link } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 let firstRender = true;
 const HeroSection = () => {
   const [user, setUser] = useState();
 
-  // const refreshToken = async () => {
-  //     const res = await axios.get('http://localhost:9000/authentication/refresh', {
-  //         withCredentials: true
-  //     }).catch((err) => console.log(err));
-
-  //     const data = await res.data;
-  //     return data;
-  // }
-  // const sendGetRequest = async () => {
-  //     const res = await axios.get("http://localhost:9000/authentication/user", {
-  //         withCredentials: true
-  //     }).then(err => console.log(err));
-
-  //     const data = await res.data;
-  //     return data
-  // }
-
-  useEffect(() => {
-    // if (firstRender) {
-    //   firstRender = false;
-    //   sendGetRequest().then((data) => setUser(data.user));
-    // }
-    // let interval = setInterval(() => {
-    //   refreshToken().then((data) => setUser(data.user));
-    // }, 1000 * 29);
-
-    // return () => clearInterval(interval);
-  }, []);
   return (
     <div>
       <div
@@ -60,19 +36,9 @@ const HeroSection = () => {
                       <h1 className="display-2 mb-5 text-black fw-bold animated slideInDown">
                         Organic Food Is Good For Health
                       </h1>
-                      {user && <h1>{user.name}</h1>}
-                      <a
-                        href=""
-                        className="btn btn-success rounded-pill py-sm-3 px-sm-5"
-                      >
+                      <Link to="products" className="btn btn-success rounded-pill py-sm-3 px-sm-5" >
                         Products
-                      </a>
-                      <a
-                        href=""
-                        className="btn bg-light border-success text-black rounded-pill border-1 py-sm-3 px-sm-5 ms-3"
-                      >
-                        Services
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -129,6 +95,33 @@ const HeroSection = () => {
             ></span>
             <span className="visually-hidden">Next</span>
           </button>
+        </div>
+      </div>
+
+
+      <div class="container px-4 border shadow py-1" id="featured-3">
+        <div class="row g-4 py-2 row-cols-1 row-cols-lg-3">
+          <div class="feature col ">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center  bg-gradient fs-2">
+              <LocalShippingIcon className="text-success" fontSize="large" />
+            </div>
+            <h3 class="fs-1">Free Shipping</h3>
+            <p className="fw-bold">From $30.00</p>
+          </div>
+          <div class="feature col">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2">
+              <SupportAgentIcon className="text-success"  fontSize="large" />
+            </div>
+            <h3 class="fs-1">Support 24/7</h3>
+            <p className="fw-bold">At Anytime</p>
+          </div>
+          <div class="feature col">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2">
+              <PaymentIcon className="text-success"  fontSize="large"/>
+            </div>
+            <h3 class="fs-1">Secure Payments</h3>
+            <p className="fw-bold">Totally Safe</p>
+          </div>
         </div>
       </div>
       <AllProducts />

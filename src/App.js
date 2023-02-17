@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />}>
           <Route path="/home" element={<HeroSection />} />
-          <Route path="products" element={<AllProducts />} />
+          <Route path="home/products" element={<AllProducts />} />
           <Route path="history" element={<History />} />
           <Route path="home/products/:productId" element={<SingleProducts />} />
           <Route path="wishlists" element={<Wishlists />} />

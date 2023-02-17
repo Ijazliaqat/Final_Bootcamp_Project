@@ -7,15 +7,14 @@ import "./wishlists.css";
 const Wishlists = () => {
   const [wishlistUser, setWishListUser] = useState([]);
   useEffect(async () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage?.getItem("token");
     const wishlist = await axios.get("/user/wishlist", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    setWishListUser(wishlist.data[0]?.data);
+    setWishListUser(wishlist?.data[0]?.data);
   }, []);
 
-  console.log(wishlistUser.map((item) => item.name));
   return (
     <>
       <div className="bg-success d-flex justify-content-center row flex-wrap border border-rounded">
