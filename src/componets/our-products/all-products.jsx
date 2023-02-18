@@ -191,13 +191,13 @@ const AllProducts = (data) => {
                           </div>
                         </div>
                         <div className="text-center p-4">
-                          <a className="d-block h5 mb-2" href="">
+                          <a className="d-block h5 mb-2 text-decoration-none text-secondary" href="">
                             {item?.name}
                           </a>
-                          <span className="text-primary me-1">
+                          <span className="text-secondary me-1">
                             ${item?.newPrice}
                           </span>
-                          <span className="text-body text-decoration-line-through">
+                          <span className="text-secondary text-decoration-line-through">
                             ${item?.oldPrice}
                           </span>
                         </div>
@@ -205,7 +205,7 @@ const AllProducts = (data) => {
                           <small className="w-50 text-center border-end py-2">
                             <i className=" me-2 text-body">
                               <Link to={`products/${item?._id}`}>
-                                <VisibilityIcon
+                                <VisibilityIcon className="text-secondary"
                                   onClick={() => signleProductHandler(item)}
                                 />
                               </Link>
@@ -214,7 +214,7 @@ const AllProducts = (data) => {
                           <small className="w-50 text-center border-end py-2">
                             <a className="text-body">
                               <i className="me-2">
-                                <AddShoppingCartIcon
+                                <AddShoppingCartIcon className="text-secondary"
                                   onClick={()=>{addtocarthandler(item)}}
                                 />
                               </i>

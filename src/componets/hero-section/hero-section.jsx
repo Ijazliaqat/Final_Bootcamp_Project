@@ -101,25 +101,25 @@ const HeroSection = () => {
 
       <div class="container px-4 border shadow py-1" id="featured-3">
         <div class="row g-4 py-2 row-cols-1 row-cols-lg-3">
-          <div class="feature col ">
+          <div class="feature col border-end p-3">
             <div class="feature-icon d-inline-flex align-items-center justify-content-center  bg-gradient fs-2">
               <LocalShippingIcon className="text-success" fontSize="large" />
             </div>
-            <h3 class="fs-1">Free Shipping</h3>
+            <h3 class="fs-2">Free Shipping</h3>
             <p className="fw-bold">From $30.00</p>
           </div>
-          <div class="feature col">
+          <div class="feature col border-end p-3">
             <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2">
               <SupportAgentIcon className="text-success"  fontSize="large" />
             </div>
-            <h3 class="fs-1">Support 24/7</h3>
+            <h3 class="fs-2">Support 24/7</h3>
             <p className="fw-bold">At Anytime</p>
           </div>
-          <div class="feature col">
+          <div class="feature col p-3">
             <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2">
               <PaymentIcon className="text-success"  fontSize="large"/>
             </div>
-            <h3 class="fs-1">Secure Payments</h3>
+            <h3 class="fs-2">Secure Payments</h3>
             <p className="fw-bold">Totally Safe</p>
           </div>
         </div>

@@ -56,10 +56,10 @@ const AddCart = () => {
       {cartItems?.map((item) => {
         return (
           <div key={item.id} className="cart-items p-2">
-            <div className="">
+            <div className="d-flex align-self-center">
               <h6>{item?.name}</h6>
             </div>
-            <div className="d-flex w-50 justify-content-between">
+            <div className="d-flex w-50 justify-content-between align-self-center">
               <Grid className="d-flex mr-2">
                 <Avatar
                   onClick={() => decrementHandler(item)}
@@ -78,7 +78,7 @@ const AddCart = () => {
 
               <div>
                 <Avatar sx={{ bgcolor: deepOrange[500] }} variant="square">
-                  <DeleteIcon onClick={() => deleteHandler(item)} />
+                  <DeleteIcon sx={{width:'20px', height:'20px'}} onClick={() => deleteHandler(item)} />
                 </Avatar>
               </div>
             </div>
