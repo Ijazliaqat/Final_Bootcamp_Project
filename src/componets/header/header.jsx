@@ -76,13 +76,13 @@ const Header = () => {
               {/* <Link to='log-in'><Button> {user && <h1>{user?.name}</h1>}</Button></Link> */}
             </div>
             <div className="d-none d-lg-flex ms-2">
-              <a className="btn-sm-square bg-white rounded-circle ms-3" href="">
+              <a className="btn-sm-square bg-white rounded-circle ms-3" >
                 <small className="fa fa-search text-body"></small>
               </a>
-              <a className="btn-sm-square bg-white rounded-circle ms-3" href="">
+              <a className="btn-sm-square bg-white rounded-circle ms-3" >
                 <small className="fa fa-user text-body"></small>
               </a>
-              <a className="btn-sm-square bg-white rounded-circle ms-3" href="">
+              <a className="btn-sm-square bg-white rounded-circle ms-3">
                 <small className="fa fa-shopping-bag text-body"></small>
               </a>
             </div>

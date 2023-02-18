@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import SingleProducts from "./componets/single-products/single-products";
 import CreateProduct from "./componets/add-products/add-products";
 import SignIn from "./componets/authentication/sign-in/sign-in";
 import SignUp from "./componets/authentication/sign-up/sign-up";
@@ -14,6 +13,7 @@ const HeroSection = lazy(() => import('./componets/hero-section/hero-section'));
 const AllProducts = lazy(() => import('./componets/our-products/all-products'));
 const Wishlists = lazy(() => import('./componets/wishlists/wishlists'));
 const History = lazy(() => import('./componets/history/history'));
+const SingleProducts = lazy(() => import('./componets/single-products/single-products'));
 
 function App() {
   return (

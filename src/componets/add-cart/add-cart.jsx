@@ -14,6 +14,8 @@ const AddCart = () => {
   const { cartItems } = useSelector((state) => state.addproduct);
   console.log(cartItems);
   const dispatch = useDispatch();
+  const total = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
+  console.log(total);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -86,10 +88,9 @@ const AddCart = () => {
         );
       })}
 
-      <div className="cart-footer">
-        <h6>Proceed To Checkout</h6>
-        <p>$ 00</p>
-      </div>
+      <button className=" border-0 cart-footer d-flex rounded-3 justify-content-around align-items-center">
+        <h6>Proceed To Checkout   <span className="ml-2 bg-light text-success p-1 px-3 rounded-3">{`$ ${total}`}</span></h6>
+      </button>
     </Box>
   );
 
@@ -103,7 +104,7 @@ const AddCart = () => {
               sx={{ color: "#157347" }}
             />
           </Badge>
-          <span className="add-cart-price">00</span>
+          <span className="add-cart-price">{total}</span>
         </Button>}
         <SwipeableDrawer
           anchor={"left"}

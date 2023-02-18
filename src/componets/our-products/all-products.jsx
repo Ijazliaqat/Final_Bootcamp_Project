@@ -191,7 +191,7 @@ const AllProducts = (data) => {
                           </div>
                         </div>
                         <div className="text-center p-4">
-                          <a className="d-block h5 mb-2 text-decoration-none text-secondary" href="">
+                          <a className="d-block h5 mb-2 text-decoration-none text-secondary">
                             {item?.name}
                           </a>
                           <span className="text-secondary me-1">

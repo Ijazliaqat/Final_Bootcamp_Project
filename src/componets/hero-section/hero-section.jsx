@@ -54,13 +54,11 @@ const HeroSection = () => {
                         Natural Food Is Always Healthy
                       </h1>
                       <a
-                        href=""
                         className="btn btn-success rounded-pill py-sm-3 px-sm-5"
                       >
                         Products
                       </a>
                       <a
-                        href=""
                         className="btn bg-light border-success text-black rounded-pill border-1 py-sm-3 px-sm-5 ms-3"
                       >
                         Services
