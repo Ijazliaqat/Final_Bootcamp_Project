@@ -1,5 +1,5 @@
 import {
-  Avatar, Badge, Box, Button, Divider, Grid, List, ListItem, ListItemButton, ListItemText, SwipeableDrawer,
+  Avatar, Badge, Box, Button, Divider, Grid, List, ListItem, ListItemButton, ListItemText, Modal, SwipeableDrawer,
 } from "@mui/material";
 import React from "react";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
@@ -7,15 +7,36 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./add-cart.css";
 import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment, removeItem} from "../../store/addCartSlice/addCartSlice";
+import { decrement, increment, removeItem } from "../../store/addCartSlice/addCartSlice";
+import { Link } from "react-router-dom";
+import { Field, Form, Formik } from "formik";
+import useAddCart from "./use-add-cart";
+
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const AddCart = () => {
   const [state, setState] = React.useState({ left: false });
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const { initialValuesOrder, placeOrderSchema, placeOrderHandler } = useAddCart();
+
   const { cartItems } = useSelector((state) => state.addproduct);
-  console.log(cartItems);
   const dispatch = useDispatch();
   const total = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
-  console.log(total);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -80,7 +101,7 @@ const AddCart = () => {
 
               <div>
                 <Avatar sx={{ bgcolor: deepOrange[500] }} variant="square">
-                  <DeleteIcon sx={{width:'20px', height:'20px'}} onClick={() => deleteHandler(item)} />
+                  <DeleteIcon sx={{ width: '20px', height: '20px' }} onClick={() => deleteHandler(item)} />
                 </Avatar>
               </div>
             </div>
@@ -88,7 +109,7 @@ const AddCart = () => {
         );
       })}
 
-      <button className=" border-0 cart-footer d-flex rounded-3 justify-content-around align-items-center">
+      <button onClick={handleOpen} className=" border-0 cart-footer d-flex rounded-3 justify-content-around align-items-center">
         <h6>Proceed To Checkout   <span className="ml-2 bg-light text-success p-1 px-3 rounded-3">{`$ ${total}`}</span></h6>
       </button>
     </Box>
@@ -97,7 +118,7 @@ const AddCart = () => {
   return (
     <div>
       <div>
-        {cartItems?.length && <Button className="add-cart" onClick={toggleDrawer("left", true)}>
+        {cartItems?.length>0 && <Button className="add-cart" onClick={toggleDrawer("left", true)}>
           <Badge badgeContent={cartItems?.length} color="success">
             <ShoppingBagIcon
               className="add-cart-icon"
@@ -115,6 +136,45 @@ const AddCart = () => {
           {list("left")}
         </SwipeableDrawer>
       </div>
+
+      {/* Proceed Order Modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <h4 id="modal-modal-title">
+            Place Your Order
+          </h4>
+          <Box id="modal-modal-description">
+            <Formik
+              initialValues={initialValuesOrder}
+              validationSchema={placeOrderSchema}
+              onSubmit={placeOrderHandler}
+            >
+              {({ errors, touched }) => (
+                <Form>
+                  <div className="form-floating mb-2">
+                    <Field name='name' type='text' className='col-12 field-input' placeholder="Name" />
+                    {errors.name && touched.name && <div className='text-danger'>{errors.name}</div>}
+                  </div>
+                  <div className="form-floating">
+                    <Field name='email' type='email' className='col-12 field-input' placeholder="Enter Email" />
+                    {errors.email && touched.email && <div className='text-danger'>{errors.email}</div>}
+                  </div>
+                  <div className="form-floating my-2">
+                    <Field name='address' type='text' className='col-12  field-input' placeholder='Address' />
+                    {errors.address && touched.address && <div className='text-danger'>{errors.address}</div>}
+                  </div>
+
+                  <button className="w-100 btn btn-lg btn-success" type="submit">Confirm</button>
+                </Form>)}
+            </Formik>
+          </Box>
+        </Box>
+      </Modal>
     </div>
   );
 };

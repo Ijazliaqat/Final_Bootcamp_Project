@@ -8,9 +8,6 @@ const CreateProduct = () => {
   const [image, setImage] = useState("");
   const [selectCategory, setSelectCatgory] = useState("");
 
-
-  console.log(selectCategory);
-
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();

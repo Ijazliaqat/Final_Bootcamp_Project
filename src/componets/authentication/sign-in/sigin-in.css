@@ -11,6 +11,9 @@
 
 .field-input{
     height: 45px !important;
+    /* border: 1px solid red; */
+    /* border: none; */
+    outline: none;
 }
 
 .container-1 {
