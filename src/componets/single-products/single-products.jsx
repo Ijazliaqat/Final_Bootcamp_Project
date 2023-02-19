@@ -1,15 +1,27 @@
 import { Rating } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import productImage from "../single-products/images/image.png";
+import { addToCartItem, decrement, increment } from "../../store/addCartSlice/addCartSlice";
 
 const SingleProducts = () => {
   const { singleProductItem } = useSelector((state) => state.singleProduct);
+  const dispatch = useDispatch();
   console.log(singleProductItem);
   const [value, setValue] = useState(2);
   const param = useParams();
   const { productId } = param;
+
+  const addCartHandler = (item) =>{
+    let cartObj = {
+      id: item?._id,
+      name: item?.name,
+      quantity: 1,
+      price: item?.newPrice
+    }
+    dispatch(addToCartItem(cartObj))
+  }
+
   return (
     <>
       {/* Main Container for Product Short details  */}
@@ -41,26 +53,9 @@ const SingleProducts = () => {
               Brand: <small>By Ideas Pakistan</small>
             </h6>
             <h4>$ {singleProductItem?.newPrice}</h4>
-            <div className="quantity justify-content-center d-flex ">
-              {/* <h6 className="my-1">Quantity:</h6> */}
-              <button type="button" className="btn btn-outline-success mx-2 ">
-                +
-              </button>
-              <input
-                type="text"
-                className="form-control w-25 rounded border-success "
-                id="floatingInput"
-                placeholder="Quantity"
-              />
-              <button type="button" className="btn btn-outline-success mx-2">
-                -
-              </button>
-            </div>
-            <button type="button" className="btn mt-5 w-50 btn-success mx-2">
+            
+            <button onClick={()=>addCartHandler(singleProductItem)} type="button" className="btn mt-5 w-50 btn-success mx-2">
               Add To Cart
-            </button>
-            <button type="button" className="btn my-1 w-50 btn-success mx-2">
-              Buy Now
             </button>
           </div>
         </div>

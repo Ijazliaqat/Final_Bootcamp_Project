@@ -10,7 +10,7 @@ export const singleProuctSlice = createSlice({
   reducers: {
     singleProductItemHandler: (state,action)=>{
         console.log(action.payload);
-        state.singleProductItem = action?.payload
+        state.singleProductItem = action.payload;
     }
   },
 });

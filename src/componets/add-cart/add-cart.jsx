@@ -19,9 +19,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  minWidth: 800,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -85,7 +84,7 @@ const AddCart = () => {
             <div className="d-flex w-50 justify-content-between align-self-center">
               <Grid className="d-flex mr-2">
                 <Avatar
-                  onClick={() => decrementHandler(item)}
+                  onClick={() => decrementHandler(item._id)}
                   sx={{ width: 24, height: 24 }}
                 >
                   -
@@ -118,14 +117,14 @@ const AddCart = () => {
   return (
     <div>
       <div>
-        {cartItems?.length>0 && <Button className="add-cart" onClick={toggleDrawer("left", true)}>
+        {cartItems?.length > 0 && <Button className="add-cart" onClick={toggleDrawer("left", true)}>
           <Badge badgeContent={cartItems?.length} color="success">
             <ShoppingBagIcon
               className="add-cart-icon"
               sx={{ color: "#157347" }}
             />
           </Badge>
-          <span className="add-cart-price">{total}</span>
+          <span className="add-cart-price">${total}</span>
         </Button>}
         <SwipeableDrawer
           anchor={"left"}
@@ -145,33 +144,92 @@ const AddCart = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h4 id="modal-modal-title">
+          <h3 id="modal-modal-title">
             Place Your Order
-          </h4>
-          <Box id="modal-modal-description">
-            <Formik
-              initialValues={initialValuesOrder}
-              validationSchema={placeOrderSchema}
-              onSubmit={placeOrderHandler}
-            >
-              {({ errors, touched }) => (
-                <Form>
-                  <div className="form-floating mb-2">
-                    <Field name='name' type='text' className='col-12 field-input' placeholder="Name" />
-                    {errors.name && touched.name && <div className='text-danger'>{errors.name}</div>}
-                  </div>
-                  <div className="form-floating">
-                    <Field name='email' type='email' className='col-12 field-input' placeholder="Enter Email" />
-                    {errors.email && touched.email && <div className='text-danger'>{errors.email}</div>}
-                  </div>
-                  <div className="form-floating my-2">
-                    <Field name='address' type='text' className='col-12  field-input' placeholder='Address' />
-                    {errors.address && touched.address && <div className='text-danger'>{errors.address}</div>}
-                  </div>
+          </h3>
+          <Box id="modal-modal-description" style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div className='col-5'>
+              <Formik
+                initialValues={initialValuesOrder}
+                validationSchema={placeOrderSchema}
+                onSubmit={placeOrderHandler}
+              >
+                {({ errors, touched }) => (
+                  <Form className="">
+                    <div className="mb-2">
+                      <label>Full Name</label>
+                      <Field name='name' type='text' className='col-12 field-input' placeholder="Name" />
+                      {errors.name && touched.name && <div className='text-danger'>{errors.name}</div>}
+                    </div>
+                    <div className="">
+                      <label>Email</label>
+                      <Field name='email' type='email' className='col-12 field-input' placeholder="Enter Email" />
+                      {errors.email && touched.email && <div className='text-danger'>{errors.email}</div>}
+                    </div>
+                    <div className="my-2">
+                      <label>Delivery Address</label>
+                      <Field name='address' type='text' className='col-12  field-input' placeholder='Address' />
+                      {errors.address && touched.address && <div className='text-danger'>{errors.address}</div>}
+                    </div>
 
-                  <button className="w-100 btn btn-lg btn-success" type="submit">Confirm</button>
-                </Form>)}
-            </Formik>
+                    <div className="my-2">
+                      <label>Payment Details</label>
+                      <p>
+                        <Field type="radio" name="picked" value="1" />
+                         <span className="ml-2">Cash on Delivery</span>
+                      </p>
+                    </div>
+                    <button className="w-100 btn btn-lg btn-success" type="submit">Confirm</button>
+                  </Form>)}
+
+              </Formik>
+            </div>
+
+            <div className='col-5'>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <h4>
+                  <ShoppingBagIcon
+                    sx={{ width: "50px", height: "30px", color: "green" }}
+                  />
+                  Shopping Cart
+                </h4>
+                <h4>
+                  ${total}
+                </h4>
+              </div>
+              {cartItems?.map((item) => {
+                return (
+                  <div key={item.id} className="cart-items p-2">
+                    <div className="d-flex align-self-center">
+                      <h6>{item?.name}</h6>
+                    </div>
+                    <div className="d-flex w-50 justify-content-between align-self-center">
+                      <Grid className="d-flex mr-2">
+                        <Avatar
+                          onClick={() => decrementHandler(item)}
+                          sx={{ width: 24, height: 24 }}
+                        >
+                          -
+                        </Avatar>
+                        <span> {item?.quantity} </span>
+                        <Avatar
+                          onClick={() => incrementHandler(item)}
+                          sx={{ width: 24, height: 24 }}
+                        >
+                          +
+                        </Avatar>
+                      </Grid>
+
+                      <div>
+                        <Avatar sx={{ bgcolor: deepOrange[500] }} variant="square">
+                          <DeleteIcon sx={{ width: '20px', height: '20px' }} onClick={() => deleteHandler(item)} />
+                        </Avatar>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </Box>
         </Box>
       </Modal>

@@ -12,7 +12,7 @@ const useAddCart = () => {
       const placeOrderSchema = Yup.object().shape({
         name: Yup.string().required('Enter Your Name'),
         email: Yup.string().required('Enter your Email'),
-        address: Yup.string().required('Enter your Email'),
+        address: Yup.string().required('Enter your Delivery Address'),
        
       })
     

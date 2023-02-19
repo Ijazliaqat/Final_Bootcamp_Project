@@ -204,7 +204,8 @@ const AllProducts = (data) => {
                         <div className="d-flex border-top">
                           <small className="w-50 text-center border-end py-2">
                             <i className=" me-2 text-body">
-                              <Link to={`products/${item?._id}`}>
+                            {/* home/products/:productId */}
+                              <Link to={`/${item?._id}`}>
                                 <VisibilityIcon className="text-secondary"
                                   onClick={() => signleProductHandler(item)}
                                 />
