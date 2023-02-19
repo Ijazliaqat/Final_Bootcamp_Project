@@ -175,8 +175,9 @@ const AddCart = () => {
                     <div className="my-2">
                       <label>Payment Details</label>
                       <p>
-                        <Field type="radio" name="picked" value="1" />
+                        <Field type="radio" name="delivery" value="Cash_on_delivery" />
                          <span className="ml-2">Cash on Delivery</span>
+                         {errors.delivery && touched.delivery && <div className='text-danger'>{errors.delivery}</div>}
                       </p>
                     </div>
                     <button className="w-100 btn btn-lg btn-success" type="submit">Confirm</button>
