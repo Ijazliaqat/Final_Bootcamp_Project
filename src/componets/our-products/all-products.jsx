@@ -18,6 +18,7 @@ import { TabList } from "@mui/lab";
 import { TabPanel } from "@mui/lab";
 import AppAlert from "../app-alert/app-alert";
 import { addToCartItem } from "../../store/addCartSlice/addCartSlice";
+import { showAppAlert } from "../../store/app-alert/app-alert-slice";
 
 const AllProducts = (data) => {
   const [state, setState] = useState({
@@ -90,6 +91,10 @@ const AllProducts = (data) => {
       price: item?.newPrice
     }
     dispatch(addToCartItem(cartObj))
+  }
+
+  const alertHandler = () => {
+    dispatch(showAppAlert('Snackbar Message'))
   }
 
   return (
@@ -167,6 +172,8 @@ const AllProducts = (data) => {
             </TabContext>
           </Box>
 
+          <Button onClick={alertHandler}>global alert</Button>
+
           <div className="tab-content">
             <div id="tab-1" className="tab-pane fade show p-0 active">
               <div className="row g-4">
@@ -243,7 +250,7 @@ const AllProducts = (data) => {
         </div>
       </div>
 
-      <Snackbar
+      {/* <Snackbar
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         autoHideDuration={1500}
@@ -255,7 +262,7 @@ const AllProducts = (data) => {
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           {aletMesg}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </div>
   );
 };

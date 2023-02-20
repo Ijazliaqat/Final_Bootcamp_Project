@@ -1,12 +1,6 @@
 import React from "react";
-import google from "../../../assets/images/google.png";
-import Facebook from "../../../assets/images/facebook.png";
-import GitHub from "../../../assets/images/GitHub.png";
 import useSignIn from "./use-sign-in";
 import { Formik, Form, Field } from "formik";
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import "./sigin-in.css";
 import AppAlert from "../../app-alert/app-alert";
 import { Link } from "react-router-dom";
@@ -22,27 +16,7 @@ export const SignIn = () => {
         <h1 className="fw-bold text-success">
           Bite <span className="text-secondary">Bazaar</span>
         </h1>
-      </Grid>
-      <div className="container mt-4">
-        <div className="d-flex flex-wrap  justify-content-center">
-          <div className="border border-danger rounded-5 my-2 py-2 px-4 d-flex mx-2">
-           <GoogleIcon />
-            <h5 className="mx-2">Google</h5>
-          </div>
-          <div>
-            <div className="border border-primary rounded-5 my-2 py-2 px-4 d-flex mx-2">
-              <FacebookIcon />
-              <h5 className="mx-2">Facebook</h5>
-            </div>
-          </div>
-          <div>
-            <div className="border border-dark rounded-5 my-2 py-2 px-4 d-flex mx-2">
-            <GitHubIcon/>
-              <h5 className="mx-2">GitHub</h5>
-            </div>
-          </div>
-        </div>
-       
+      </Grid>       
         <main className="form-signin w-50 mt-5 m-auto">
           <Formik
             initialValues={initialValuesSignIn}
@@ -102,7 +76,6 @@ export const SignIn = () => {
             )}
           </Formik>
         </main>
-      </div>
     </>
   );
 };

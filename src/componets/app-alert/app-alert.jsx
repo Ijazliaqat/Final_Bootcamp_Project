@@ -1,27 +1,30 @@
-import { Button, IconButton, Snackbar } from "@mui/material";
+import { Button, IconButton, Snackbar, SnackbarContent } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { closeAppAlert } from "../../store/app-alert/app-alert-slice";
 
 const AppAlert = (props) => {
-  const [state, setState] = useState({ open: false,vertical: "top", horizontal: "center"});
-  const { vertical, horizontal, open } = state;
+  const { openAlert, message } = useSelector(state => state.appalert)
+  const dispatch = useDispatch();
 
-  const handleClick = (newState) => () => {setState({ open: true, ...newState })};
-
-  const handleClose = () => {setState({ ...state, open: false })};
-
+  const handleClose = () => {
+    dispatch(closeAppAlert());
+  };
   return (
     <div>
-      <Button onClick={handleClick({vertical: "top",horizontal: "right"})} >
-        Top-Right
-      </Button>
-
       <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        open={openAlert}
+        autoHideDuration={3000}
         onClose={handleClose}
-        message="I love snacks"
-        key={vertical + horizontal}
-      />
+      >
+        <SnackbarContent
+          message={message}
+        />
+      </Snackbar>
     </div>
   );
 };

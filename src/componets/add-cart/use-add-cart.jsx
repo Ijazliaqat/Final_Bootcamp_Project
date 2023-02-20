@@ -24,16 +24,14 @@ const useAddCart = () => {
   const placeOrderHandler = async (values) => {
     console.log(values);
 
-    const userOrderDetails = {
-      name: values.name,
-      email: values.email,
-      address: values.address,
-      delivery: values.delivery,
-      shoppingList: cartItems
-    }
-
     try {
-      const response = axios.put('/user/history',{userOrderDetails},{headers: { Authorization: `Bearer ${token}` }})
+      const response = axios.put('/user/history', {
+        name: values.name,
+        email: values.email,
+        address: values.address,
+        delivery: values.delivery,
+        shoppingList: cartItems
+      }, { headers: { Authorization: `Bearer ${token}` } })
       return response.data
     } catch (error) {
       console.log(error);
