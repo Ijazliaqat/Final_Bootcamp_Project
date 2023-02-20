@@ -3,7 +3,7 @@ import addproductReducer from './addCartSlice/addCartSlice';
 import signinReducer from './auth/signinSlice';
 import singleProductReducer from './singleProduct/singleProductSlice';
 import allproductsReducer from './all-products-slice/all-products-slice';
-import appalertReducer from './app-alert/app-alert-slice';
+import snackbarReducer from './app-alert/app-alert-slice';
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +11,6 @@ export const store = configureStore({
         sigin: signinReducer,
         singleProduct: singleProductReducer,
         allproducts: allproductsReducer,
-        appalert: appalertReducer
+        snackbar: snackbarReducer
     }
 })

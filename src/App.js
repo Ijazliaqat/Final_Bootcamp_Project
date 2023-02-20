@@ -10,6 +10,7 @@ import SingleProducts from "./componets/single-products/single-products"
 import { lazy, Suspense } from "react";
 import "./App.css";
 import ProceedOrder from "./componets/proceed-order/proceed-order";
+import AppAlert from "./componets/app-alert/app-alert";
 
 const HeroSection = lazy(() => import('./componets/hero-section/hero-section'));
 const AllProducts = lazy(() => import('./componets/our-products/all-products'));
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <AddCart />
+      <AppAlert />
       <Suspense fallback={<AppLoader message={'Loading...'} />}>
         <Routes>
           <Route path="/" element={<Dashboard />}>

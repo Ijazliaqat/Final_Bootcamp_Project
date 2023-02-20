@@ -21,31 +21,18 @@ import { addToCartItem } from "../../store/addCartSlice/addCartSlice";
 import { showAppAlert } from "../../store/app-alert/app-alert-slice";
 
 const AllProducts = (data) => {
-  const [state, setState] = useState({
-    open: false,
-    vertical: "top",
-    horizontal: "center",
-  });
-  const [aletMesg, setAlertMesg] = useState("");
   const [products, setProducts] = useState();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [value, setValue] = useState(2);
 
-  const { vertical, horizontal, open } = state;
-
-  const handleClick = (newState, alertMesg) => () => {
-    console.log(newState);
-    setState({ open: true, ...newState });
-    setAlertMesg(alertMesg.mesg);
-  };
-
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
 
   const { productsArr } = useSelector((state) => state.allproducts);
   console.log(productsArr);
   const dispatch = useDispatch();
+
+  const alertHandler = () => {
+    dispatch(showAppAlert('Snackbar Message'));
+  }
 
   console.log(products);
   const handleCategorySelection = (category) => {
@@ -54,8 +41,6 @@ const AllProducts = (data) => {
 
   const token = localStorage?.getItem("token");
   const addWishListHandler = async (item) => {
-
-    setAlertMesg('Successfully added to Wishlist')
 
     const token = localStorage?.getItem("token");
     const response = await axios.put(
@@ -93,9 +78,7 @@ const AllProducts = (data) => {
     dispatch(addToCartItem(cartObj))
   }
 
-  const alertHandler = () => {
-    dispatch(showAppAlert('Snackbar Message'))
-  }
+ 
 
   return (
     <div>
@@ -117,26 +100,9 @@ const AllProducts = (data) => {
             </div>
 
             <div
-              className="d-flex bg-success  rounded-2 flex-wrap py-3 justify-content-between text-start  slideInRight"
-              data-wow-delay="0.1s"
-            >
+              className="d-flex bg-success  rounded-2 flex-wrap py-3 justify-content-between text-start  slideInRight">
               <div className="filter-items">
-                <h5 className="text-white ">Price</h5>
-                <input type="text" />
-              </div>
-              <div className="filter-item">
-                <h5 className="text-white ">Availability</h5>
-                <input type="text" />
-              </div>
-              <div>
-                <h5 className="text-white ">Rating</h5>
-                <Rating
-                  name="simple-controlled"
-                  value={value}
-                  onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                />
+                <h5 className="text-white ">Store Products</h5>
               </div>
             </div>
           </div>
@@ -249,20 +215,6 @@ const AllProducts = (data) => {
           </div>
         </div>
       </div>
-
-      {/* <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        autoHideDuration={1500}
-        onClose={handleClose}
-        // message={aletMesg}
-        severity="success"
-        key={vertical + horizontal}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          {aletMesg}
-        </Alert>
-      </Snackbar> */}
     </div>
   );
 };
