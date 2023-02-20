@@ -60,6 +60,8 @@ const AddCart = () => {
     dispatch(removeItem(item));
   };
 
+  
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 320 }}

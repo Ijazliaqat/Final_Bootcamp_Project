@@ -28,7 +28,7 @@ const CreateProduct = () => {
     };
     console.log(dataObj);
     try {
-      const response = await axios.post("/add-product", dataObj);
+      const response = await axios.post("/user/add-product", dataObj);
       console.log(response.data);
       return response.data;
     } catch (error) {

@@ -5,7 +5,7 @@ export const getAllProductsThunk = createAsyncThunk('products',
     async (selectedCategory) => {
        
         try {
-            const response = await axios.get(`/all-products?selectCategory=${selectedCategory}`)
+            const response = await axios.get(`/user/all-products?selectCategory=${selectedCategory}`)
             // console.log(response);
             return response.data
         } catch (error) {
@@ -13,7 +13,6 @@ export const getAllProductsThunk = createAsyncThunk('products',
             // alert(error.response.data.message)
             return error.response.data.message
         }
-
     }
 )
 

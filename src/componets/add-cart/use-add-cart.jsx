@@ -1,11 +1,17 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from "../../axios/axios";
+import { removeItem } from '../../store/addCartSlice/addCartSlice';
+import { showAppAlert } from '../../store/app-alert/app-alert-slice';
 
 const useAddCart = () => {
   const token = localStorage?.getItem("token");
   const { cartItems } = useSelector((state) => state.addproduct);
+  const dispatch = useDispatch();
+
+  const alertHandler = (message) => {
+    dispatch(showAppAlert(message));
+  }
 
   const initialValuesOrder = {
     name: '',
@@ -22,8 +28,7 @@ const useAddCart = () => {
   })
 
   const placeOrderHandler = async (values) => {
-    console.log(values);
-
+    // console.log(values);
     try {
       const response = axios.put('/user/history', {
         name: values.name,
@@ -31,13 +36,11 @@ const useAddCart = () => {
         address: values.address,
         delivery: values.delivery,
         shoppingList: cartItems
-      }, { headers: { Authorization: `Bearer ${token}` } })
+      }, { headers: { Authorization: `Bearer ${token}` } }).then(alertHandler('Your order is placed'))
       return response.data
     } catch (error) {
       console.log(error);
     }
-    // navigate('/log-in')
-
   }
   return { initialValuesOrder, placeOrderSchema, placeOrderHandler }
 }
