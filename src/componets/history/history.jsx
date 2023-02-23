@@ -1,6 +1,7 @@
-import { Accordion, AccordionDetails, AccordionSummary, Collapse, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import NoHistory from '../../assets/images/history.svg';
 import axios from "../../axios/axios";
 import { Box } from '@mui/system';
 
@@ -26,13 +27,17 @@ const History = () => {
       <TableContainer>
         <Table aria-label="collapsible table">
           <TableBody>
-            {userHistory.map((row) => (
+           {!!!userHistory?.length && <div className="d-flex w-100 justify-content-center text-success">
+              <img src={NoHistory} alt="no history" className="mt-5 mb-5 w-25" />
+            </div>}
+            {!!userHistory?.length && userHistory?.map((row) => (
               <Accordion key={row?.id}>
                 <AccordionSummary expandIcon={<ExpandCircleDownIcon />}>
                   <TableCell />
                   <TableCell><b>Order History</b></TableCell>
                 </AccordionSummary>
                 <AccordionDetails>
+
                   {row.shoppingList.map((item) => (
                     <Box key={item?._id}>
                       <TableRow>

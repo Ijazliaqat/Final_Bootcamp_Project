@@ -7,7 +7,7 @@ import Dashboard from "./componets/Dashboard/dashboard";
 import AddCart from "./componets/add-cart/add-cart";
 import Footer from "./componets/footer/footer";
 import SingleProducts from "./componets/single-products/single-products"
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import "./App.css";
 import ProceedOrder from "./componets/proceed-order/proceed-order";
 import AppAlert from "./componets/app-alert/app-alert";
@@ -20,6 +20,8 @@ const History = lazy(() => import('./componets/history/history'));
 
 
 function App() {
+
+  useEffect(() => { }, [])
   return (
     <div className="App">
       <AddCart />
@@ -37,7 +39,7 @@ function App() {
           <Route path="create-products" element={<CreateProduct />} />
           <Route path="/log-in" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path='/log-in' element={<Navigate to='/log-in' />} />
+          <Route path='/' element={<Navigate to='/log-in' />} />
         </Routes>
       </Suspense>
       <Footer />
