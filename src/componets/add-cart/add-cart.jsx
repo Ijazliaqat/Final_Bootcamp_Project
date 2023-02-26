@@ -86,7 +86,7 @@ const AddCart = () => {
             <div className="d-flex w-50 justify-content-between align-self-center">
               <Grid className="d-flex mr-2">
                 <Avatar
-                  onClick={() => decrementHandler(item._id)}
+                  onClick={() => decrementHandler(item)}
                   sx={{ width: 24, height: 24 }}
                 >
                   -
