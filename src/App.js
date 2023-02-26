@@ -11,6 +11,7 @@ import { lazy, Suspense, useEffect } from "react";
 import "./App.css";
 import ProceedOrder from "./componets/proceed-order/proceed-order";
 import AppAlert from "./componets/app-alert/app-alert";
+import NotFound from "./componets/not-found/not-found";
 
 const HeroSection = lazy(() => import('./componets/hero-section/hero-section'));
 const AllProducts = lazy(() => import('./componets/our-products/all-products'));
@@ -28,6 +29,8 @@ function App() {
       <AppAlert />
       <Suspense fallback={<AppLoader message={'Loading...'} />}>
         <Routes>
+          <Route path='/' element={<Navigate to='/log-in' />} />
+          <Route path='*' element={<Navigate to='/not-found' />} />
           <Route path="/" element={<Dashboard />}>
             <Route path="/home" element={<HeroSection />} />
             <Route path="home/products" element={<AllProducts />} />
@@ -39,7 +42,7 @@ function App() {
           <Route path="create-products" element={<CreateProduct />} />
           <Route path="/log-in" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path='/' element={<Navigate to='/log-in' />} />
+          <Route path="/not-found" element={<NotFound />} />
         </Routes>
       </Suspense>
       <Footer />

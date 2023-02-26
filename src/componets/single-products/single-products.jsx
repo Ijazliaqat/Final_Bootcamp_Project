@@ -2,7 +2,7 @@ import { Rating } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCartItem, decrement, increment } from "../../store/addCartSlice/addCartSlice";
+import { addToCartItem } from "../../store/addCartSlice/addCartSlice";
 
 const SingleProducts = () => {
   const { singleProductItem } = useSelector((state) => state.singleProduct);
@@ -10,7 +10,6 @@ const SingleProducts = () => {
   console.log(singleProductItem);
   const [value, setValue] = useState(2);
   const param = useParams();
-  const { productId } = param;
 
   const addCartHandler = (item) =>{
     let cartObj = {

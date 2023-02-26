@@ -4,10 +4,6 @@ import { Link, Outlet } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
 import "./header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { isLogged } from "../../store/auth/signinSlice";
-// import axios from 'axios';
-
-// axios.defaults.withCredentials = true;
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -43,7 +39,7 @@ const Header = () => {
           className="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn"
           data-wow-delay="0.1s"
         >
-          <Link to="/" className="navbar-brand ms-4 ms-lg-0">
+          <Link to="/home" className="navbar-brand ms-4 ms-lg-0">
             <h1 className="fw-bold text-success m-0">
               Bite <span className="text-secondary">Bazaar</span>
             </h1>

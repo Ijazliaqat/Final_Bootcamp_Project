@@ -53,16 +53,9 @@ const HeroSection = () => {
                       <h1 className="display-2 mb-5 text-black fw-bold animated slideInDown">
                         Natural Food Is Always Healthy
                       </h1>
-                      <a
-                        className="btn btn-success rounded-pill py-sm-3 px-sm-5"
-                      >
+                      <Link to="products" className="btn btn-success rounded-pill py-sm-3 px-sm-5" >
                         Products
-                      </a>
-                      <a
-                        className="btn bg-light border-success text-black rounded-pill border-1 py-sm-3 px-sm-5 ms-3"
-                      >
-                        Services
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
